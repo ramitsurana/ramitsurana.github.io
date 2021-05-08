@@ -1,0 +1,43 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
+# For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
+
+name: Check Docs Links
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: ['3.0']
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@473e4d8fe5dd94ee328fdfca9f8c9c7afc9dae5e
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Install Jekyll
+      run: gem install bundler jekyll
+    - name: Execute Jekyll
+      run: bundle exec jekyll serve
+    - name: Deploy on gh-pages
+      run: |
+        cp -r _site/ /tmp/_site/
+        git fetch --all
+        git fetch origin gh-pages:gh-pages
+        git checkout gh-pages
+        cp -r /tmp/_site/ .
+        git add --all
+        git commit -m 'New Deployment'
+        git push origin gh-pages
+        
