@@ -31,7 +31,9 @@ jobs:
     - name: Install Jekyll
       run: gem install bundler jekyll
     - name: Execute Jekyll
-      run: bundle exec jekyll serve
+      run: bundle exec jekyll serve > /dev/null 2>&1 &
+    - name: Stop Jekyll Server
+      run: kill -9 $(ps -ef | grep jekyll)
     - name: Deploy on gh-pages
       run: |
         cp -r _site/ /tmp/_site/
