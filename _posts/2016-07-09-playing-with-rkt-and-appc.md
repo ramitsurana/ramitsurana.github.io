@@ -8,6 +8,7 @@ tags: [rkt aci docker]
 category: [coreos, rkt, containers]
 description: "Exploring the rkt container ecosystem"
 comments: true
+cover:  assets/images/advanced.jpg
 class: post-template
 subclass: 'post'
 ---

@@ -7,7 +7,7 @@ author: ramitsurana
 tags: [protein folding, molecules, cell wall]
 category: [cell wall, protein structures, peptide bonds]
 excerpt: "How Protein Folding Works?"
-#cover:  assets/images/welcome.jpg
+cover:  assets/images/grapes.jpg
 class: post-template
 subclass: 'post'
 ---

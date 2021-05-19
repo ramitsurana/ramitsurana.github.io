@@ -6,6 +6,7 @@ date: 2017-01-11
 author: ramitsurana
 category: [P2P, Networking, BlockChain, Bitcoin, Dapps, OpenBazar]
 excerpt: "Building modern day digital transaction systems"
+cover:  assets/images/writing.jpg
 class: post-template
 subclass: 'post'
 ---

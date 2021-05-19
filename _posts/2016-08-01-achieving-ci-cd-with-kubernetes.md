@@ -8,6 +8,7 @@ tags: [kubernetes jenkins docker fabric8 Continous Integration Delivery]
 category: [containers, jenkins, docker]
 excerpt: "Building CI/CD pipeline with kubernetes"
 comments: true
+cover:  assets/images/speeches.jpg
 class: post-template
 subclass: 'post'
 ---

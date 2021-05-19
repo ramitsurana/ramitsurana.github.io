@@ -8,6 +8,7 @@ tags: software architecture serverless microservices
 category: [software architectures]
 excerpt: "Exploring different types of enterprise class software architectures"
 comments: true
+cover:  assets/images/team.jpg
 class: post-template
 subclass: 'post'
 ---

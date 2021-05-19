@@ -7,6 +7,7 @@ author: ramitsurana
 tags: [Dynamodb, Terraform, Jenkins]
 category: [Dynamodb, Terraform, Jenkins]
 excerpt: "Storing non-sensitive parameters in Dynamodb"
+cover:  assets/images/water.jpg
 class: post-template
 subclass: 'post'
 ---

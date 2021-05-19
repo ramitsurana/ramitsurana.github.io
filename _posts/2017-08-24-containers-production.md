@@ -7,6 +7,7 @@ author: ramitsurana
 tags: containers tips openshift
 category: [openshift]
 excerpt: "Containers usage tips and tricks."
+cover:  assets/images/sky.jpg
 class: post-template
 subclass: 'post'
 ---

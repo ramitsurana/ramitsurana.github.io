@@ -7,6 +7,7 @@ author: ramitsurana
 tags: [docker orchestration automation devops kubernetes]
 category: [orchestration, docker, google, etcd, coreos]
 excerpt: "A brief study on Kubernetes and its components"
+cover:  assets/images/design.jpg
 class: post-template
 subclass: 'post'
 ---

@@ -7,6 +7,7 @@ author: ramitsurana
 tags: Chef CI/CD Jenkins Habitat Automate
 category: [Jenkins, Continous Delivery, Continous Integration, Syntax, Chef, Habitat, Automate]
 excerpt: "Using Chef Tools to automate your CI/CD Journey"
+cover:  assets/images/piano.jpg
 class: post-template
 subclass: 'post'
 ---

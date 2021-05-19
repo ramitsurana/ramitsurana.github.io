@@ -8,6 +8,7 @@ tags: docker cloud containers
 category: [docker, containers]
 excerpt: "Creating Turbo for use with Docker"
 comments: true
+cover:  assets/images/waves.jpg
 class: post-template
 subclass: 'post'
 ---

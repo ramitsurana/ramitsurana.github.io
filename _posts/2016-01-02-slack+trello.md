@@ -7,6 +7,7 @@ author: ramitsurana
 tags: [communication messaging devops]
 category: [messaging, social network]
 excerpt: "Communication and management done effectively."
+cover:  assets/images/bus.jpg
 class: post-template
 subclass: 'post'
 ---
