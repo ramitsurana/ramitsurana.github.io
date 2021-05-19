@@ -1,7 +1,7 @@
 # Jekyll configuration
 markdown: kramdown
 highlighter: rouge
-paginate: 8 # it will paginate after this number
+paginate: 100 # it will paginate after this number
 language: 'en-uk'
 words_per_minute: 200
 
@@ -10,7 +10,7 @@ baseurl: /
 
 # Website info
 title: Ramit Surana
-description: Personal Blog
+description: Ramit Surana Personal Blog
 cover: assets/images/blog-cover.jpg
 logo: assets/images/blog-icon.png
 logo_dark: assets/images/favicon.png

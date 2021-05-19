@@ -74,3 +74,14 @@ martin:
   facebook: False
   twitter: False
   cover: False
+ramit:
+  username: ramitsurana
+  name: Ramit Surana
+  location: India
+  url_full: True
+  url: True
+  bio: Author
+  picture: assets/images/profile-pic-2.jpg
+  facebook: ramitsurana
+  twitter: ramitsurana
+  cover: False

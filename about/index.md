@@ -8,10 +8,34 @@ class: page-template
 subclass: 'post page'
 ---
 
-Ghost is professional publishing platform designed for modern journalism. This is a demo site of a basic Ghost install to give you a general sense of what a new Ghost site looks like when set up for the first time.
+Hi, This is my blog. My name is Ramit Surana.
 
-> If you'd like to set up a site like this for yourself, head over to [Ghost.org](https://ghost.org/) and start a free 14 day trial to give Ghost a try!
+![profile-pic-2](https://user-images.githubusercontent.com/8342133/103178562-d844ea00-48a9-11eb-8c56-f87574c304ae.jpg)
 
-If you're a developer: Ghost is a completely open source (MIT) Node.js application built on a JSON API with an Ember.js admin client. It works with MySQL and SQLite, and is publicly available [on Github](https://github.com/TryGhost/ghost).
+My CV can be be found [here](https://github.com/ramitsurana/ramitsurana.github.io/raw/master/assets/Ramit_Surana_Resume.pdf)
 
-If you need help with using Ghost, you'll find a ton of useful articles on [our knowledgebase](https://help.ghost.org/), as well as extensive [developer documentation](https://docs.ghost.org/).
+Few Stuff I follow and use =>
+
+Blogs =>
+
+* Data Science  =>
+    * <http://www.furidamu.org/>
+    * <http://karpathy.github.io/>
+    * <https://eugeneyan.com/writing/>
+
+* Software Engineering =>
+    * <https://www.zainrizvi.io/>
+
+Podcasts =>
+
+* <https://softwareengineeringdaily.com/>
+* <https://www.calnewport.com/podcast/>
+* <https://lexfridman.com/podcast/>
+* <https://notoverthinking.com/>
+
+Note Taking/Productivity Tools  -
+
+* [Notion](https://www.notion.so/)
+* [Evernote](https://www.evernote.com/)
+
+I have also been innvolved in donations for noble causes over the past years. You can find more about it [here](https://ramitsurana.github.io/surana-foundation/).

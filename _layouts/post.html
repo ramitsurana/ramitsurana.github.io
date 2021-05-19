@@ -93,7 +93,14 @@ into the {body} of the default.hbs template -->
             {% if site.disqus or page.disqus %}
                 <section class="post-full-comments">
                     <div id="disqus_thread"></div>
-                    <script>
+                    <script src="https://utteranc.es/client.js"
+                        repo="ramitsurana/ramitsurana.github.io"
+                        issue-term="title"
+                        theme="github-light"
+                        crossorigin="anonymous"
+                        async>
+                    </script>
+                    <!-- <script>
                         var disqus_config = function () {
                             var this_page_url = '{{ site.url }}{{ page.url }}';
                             var this_page_identifier = '{{ page.id }}';
@@ -105,7 +112,7 @@ into the {body} of the default.hbs template -->
                             s.setAttribute('data-timestamp', +new Date());
                             (d.head || d.body).appendChild(s);
                         })();
-                    </script>
+                    </script> -->
                 </section>
             {% endif %}
 
