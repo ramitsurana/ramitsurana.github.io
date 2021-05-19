@@ -78,8 +78,8 @@ ramit:
   username: ramitsurana
   name: Ramit Surana
   location: India
-  url_full: True
-  url: True
+  url_full: https://ramitsurana.github.io
+  url: ramitsurana.github.io
   bio: Author
   picture: assets/images/profile-pic-2.jpg
   facebook: ramitsurana
