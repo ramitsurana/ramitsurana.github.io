@@ -6,7 +6,7 @@ language: 'en-uk'
 words_per_minute: 200
 
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
-baseurl: /
+baseurl: /ramitsurana3.github.io/
 
 # Website info
 title: Ramit Surana
@@ -72,8 +72,8 @@ repo: ramitsurana.github.io
 branch: master
 relative_source: ../jasper2/
 destination: ../jasper2-pages/
-production_url:  https://ramitsurana.github.io/
-source_url:  https://github.com/ramitsurana/ramitsurana.github.io/
+production_url:  https://ramitsurana.github.io/ramitsurana3.github.io
+source_url:  https://github.com/ramitsurana/ramitsurana3.github.io/
 
 exclude:
   - assets/css
