@@ -12,7 +12,7 @@ baseurl: /ramitsurana3.github.io/
 title: Ramit Surana
 description: Ramit Surana Personal Blog
 cover: assets/images/blog-cover.jpg
-logo: assets/images/blog-icon.png
+# logo: assets/images/blog-icon.png
 logo_dark: assets/images/favicon.png
 favicon: assets/images/favicon.png
 CNAME: #add cname for website to be created
@@ -26,8 +26,8 @@ twitter: ramitsurana # replace by your username
 facebook: ramitsurana # replace by your username
 
 # Disqus
-disqus: False
-disqus_shortname: jekyller # replace with your disqus username
+disqus: True
+disqus_shortname: ramitsurana-github-io # replace with your disqus username
 
 # Google Analytics
 google_analytics: UA-71344758-1 # replace with your GA tracking identifier
