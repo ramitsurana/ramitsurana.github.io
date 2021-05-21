@@ -23,7 +23,7 @@ While building on one of my solutions, where we typically use Dynamodb for stori
 
 ### Sample Dynamodb Schema
 
-```
+```json
 {
   "dev": {
     "account_number": "123456789",
@@ -54,7 +54,7 @@ While building on one of my solutions, where we typically use Dynamodb for stori
 
 In terraform, we had approx 90+ variables to work with, changing values for every release for even a few variables was cumbersome and time-consuming. So I ended up, changing the way how we declared and update the variables under variables.tf. Instead of declaring the values in variables terraform file, I started generating the terraform tfvars.json file at run time using some python code and passing the JSON file using the -var-file subcommand at the time of terraform plan or apply. Example -
 
-```
+```text
 terraform plan -var-file="sample.tfvars.json"
 terraform apply -var-file="sample.tfvars.json"
 ```
