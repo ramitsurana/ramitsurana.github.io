@@ -19,7 +19,7 @@ Do you have a huge infrastructure and you are tired of managing releases or fixi
 While building on one of my solutions, where we typically use Dynamodb for storing information. I  had the idea of using a central location (in our case, dynamodb) to read all the parameter related values. To give a bit of overview of our architecture, we had 3 primary AWS accounts (Dev, Control and Prod) and multiple customer accounts (100+ AWS accounts) linked together working in an orchestration. After using the dynamodb, we ended up using it something like below -
 
 
-![dynmodb-solution](/images/dynamodb-storing-values.png)
+![dynmodb-solution](assets/images/storing-params/dynamodb-storing-values.png)
 
 ### Sample Dynamodb Schema
 
