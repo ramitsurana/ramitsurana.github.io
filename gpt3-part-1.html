@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>I tried out GPT3, Here is what I did - Part 1</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="Ramit Surana Personal Blog" />
+    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="/gpt3-part-1" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="Ramit Surana" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="I tried out GPT3, Here is what I did - Part 1" />
+    <meta property="og:description" content="What is GPT3 ? GPT3 Buzz Transformations Pytorch to Tensorflow Terraform to Cloudformation Cloudformation to Azure Resource Manager YAML Format Chat Information about Covid 19 Mona Lisa Checking Stock Market Price General Knowledge Questions Minor Things References What is GPT3? GPT3 is a transformer-based NLP model which is built by" />
+    <meta property="og:url" content="/gpt3-part-1" />
+    <meta property="og:image" content="/assets/images/summit.jpg" />
+    <meta property="article:publisher" content="https://www.facebook.com/ramitsurana" />
+    <meta property="article:author" content="https://www.facebook.com/ramitsurana" />
+    <meta property="article:published_time" content="2021-05-04T00:00:00+00:00" />
+    <meta property="article:modified_time" content="2021-05-04T00:00:00+00:00" />
+    <meta property="article:tag" content="Gpt3 Chat Transformers Openai" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="I tried out GPT3, Here is what I did - Part 1" />
+    <meta name="twitter:description" content="What is GPT3 ? GPT3 Buzz Transformations Pytorch to Tensorflow Terraform to Cloudformation Cloudformation to Azure Resource Manager YAML Format Chat Information about Covid 19 Mona Lisa Checking Stock Market Price General Knowledge Questions Minor Things References What is GPT3? GPT3 is a transformer-based NLP model which is built by" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image" content="/assets/images/summit.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Ramit Surana" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Gpt3 Chat Transformers Openai" />
+    <meta name="twitter:site" content="@ramitsurana" />
+    <meta name="twitter:creator" content="@ramitsurana" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Ramit Surana",
+        "logo": "/"
+    },
+    "url": "/gpt3-part-1",
+    "image": {
+        "@type": "ImageObject",
+        "url": "/assets/images/summit.jpg",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/gpt3-part-1"
+    },
+    "description": "What is GPT3 ? GPT3 Buzz Transformations Pytorch to Tensorflow Terraform to Cloudformation Cloudformation to Azure Resource Manager YAML Format Chat Information about Covid 19 Mona Lisa Checking Stock Market Price General Knowledge Questions Minor Things References What is GPT3? GPT3 is a transformer-based NLP model which is built by"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="I tried out GPT3, Here is what I did - Part 1" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="/">Ramit Surana</a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">Home</a></li>
+    <li class="nav-about" role="menuitem"><a href="/about/">About</a></li>
+<!--     <li class="nav-getting-started" role="menuitem"><a href="/tag/getting-started/">Getting Started</a></li> -->
+    <li class="nav-try-ghost" role="menuitem"><a href="https://fantastic-experimenter-7320.ck.page/25b1d91d09">Newsletter</a></li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://facebook.com/ramitsurana" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+</a>
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/ramitsurana" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+            <a class="subscribe-button" href="#subscribe">Subscribe</a>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full  tag-gpt3-chat-transformers-openai post ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime=" 4 May 2021"> 4 May 2021</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/tag/gpt3-chat-transformers-openai/'>GPT3 CHAT TRANSFORMERS OPENAI</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">I tried out GPT3, Here is what I did - Part 1</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/assets/images/summit.jpg)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <ul>
+  <li><a href="#what-is-gpt3">What is GPT3 ?</a></li>
+  <li><a href="#gpt3-buzz">GPT3 Buzz</a></li>
+  <li><a href="#transformations">Transformations</a>
+    <ul>
+      <li><a href="#pytorch-to-tensorflow">Pytorch to Tensorflow</a></li>
+      <li><a href="#terraform-to-cloudformation">Terraform to Cloudformation</a></li>
+      <li><a href="#cloudformation-to-azure-resource-manager">Cloudformation to Azure Resource Manager</a></li>
+    </ul>
+  </li>
+  <li><a href="#yaml-format">YAML Format</a></li>
+  <li><a href="#chat">Chat</a>
+    <ul>
+      <li><a href="#information-about-covid-19">Information about Covid 19</a></li>
+      <li><a href="#mona-lisa">Mona Lisa</a></li>
+      <li><a href="#checking-stock-market-price">Checking Stock Market Price</a></li>
+      <li><a href="#general-knowledge-questions">General Knowledge Questions</a></li>
+    </ul>
+  </li>
+  <li><a href="#minor-things">Minor Things</a></li>
+  <li><a href="#references">References</a></li>
+</ul>
+
+<h2 id="what-is-gpt3">What is GPT3?</h2>
+
+<p>GPT3 is a transformer-based NLP model which is built by the OpenAI team. The GPT3 model is unique as it’s built upon 175 Billion Parameters which makes it one of the world’s largest NLP models to be available for private usage. The GPT3 model is built upon the original architecture of GPT2 with few modifications and large dataset size. If you are looking for some more information regarding the transformers, below is a good video to learn more on it -</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TQQlZhbC5ps" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<h2 id="gpt3-buzz">GPT3 Buzz</h2>
+
+<p>If you are on social media, you might find some amazing buzz happening over GPT3. Here are a few excerpts on the same -</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/GPT3?src=hash&amp;ref_src=twsrc%5Etfw">#GPT3</a> is right. On job interviews, you have to talk to the interviewer.<br />Fun fact: 100% of interviewees selected talked at some point with the interviewer. <a href="https://t.co/ag6gI62O1Y">pic.twitter.com/ag6gI62O1Y</a></p>&mdash; Alexis Paques (@AlexisPaques) <a href="https://twitter.com/AlexisPaques/status/1389216139503415303?ref_src=twsrc%5Etfw">May 3, 2021</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Generate Detailed Emails from One Line Descriptions (on your mobile)<br /><br />I used GPT-3 to build a mobile and web Gmail add-on that expands given brief descriptions into formatted and grammatically-correct professional emails.<br /><br />Thanks to <a href="https://twitter.com/OpenAI?ref_src=twsrc%5Etfw">@OpenAI</a> <a href="https://twitter.com/gdb?ref_src=twsrc%5Etfw">@gdb</a> for providing me access. <a href="https://t.co/gPB0K771NF">pic.twitter.com/gPB0K771NF</a></p>&mdash; Samanyou Garg (@SamanyouGarg) <a href="https://twitter.com/SamanyouGarg/status/1297958041262776325?ref_src=twsrc%5Etfw">August 24, 2020</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">=GPT3()... the spreadsheet function to rule them all.<br /><br />Impressed with how well it pattern matches from a few examples.<br /><br />The same function looked up state populations, peoples&#39; twitter usernames and employers, and did some math. <a href="https://t.co/W8FgVAov2f">pic.twitter.com/W8FgVAov2f</a></p>&mdash; 🤖 Paul Katsen (@pavtalk) <a href="https://twitter.com/pavtalk/status/1285410751092416513?ref_src=twsrc%5Etfw">July 21, 2020</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h2 id="transformations">Transformations</h2>
+
+<p>Amongst a lot of new things that GPT3 can do, it is also able to quite a few transformations which seems impossible for NLP models to perform until a few years ago. I did some testing and experimentation on it.</p>
+
+<h3 id="pytorch-to-tensorflow">Pytorch to Tensorflow</h3>
+
+<p>For anyone who is unaware, Pytorch and Tensorflow are state of the art Deep Learning Frameworks built by Google and Facebook. Both of these frameworks are open source and available on GitHub. For this particular challenge, I tried to instruct GPT3 in the playground, to convert some of the python code from Pytorch to Tensorflow.</p>
+
+<p>Input ⇒</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Pytorch to Tensorflow:
+</span><span class="n">Pytorch</span><span class="p">:</span> 
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">Sequential</span><span class="p">(</span>
+<span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)),</span>
+<span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">ReLU</span><span class="p">(),</span>
+<span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+
+<span class="n">Tensorflow</span><span class="p">:</span>
+</code></pre></div></div>
+
+<p>Output ⇒</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Pytorch to Tensorflow:
+</span><span class="n">Pytorch</span><span class="p">:</span> 
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">Sequential</span><span class="p">(</span>
+<span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)),</span>
+<span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">ReLU</span><span class="p">(),</span>
+<span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+
+<span class="n">Tensorflow</span><span class="p">:</span>
+
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1">#Define the model
+</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">Sequential</span><span class="p">([</span>
+<span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Flatten</span><span class="p">(),</span>
+<span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'relu'</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)),</span>
+<span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s">'softmax'</span><span class="p">)])</span>
+
+<span class="c1">#Define the optimizer
+</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">optimizers</span><span class="p">.</span><span class="n">Adam</span><span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Model</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">'categorical_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">'accuracy'</span><span class="p">])</span>
+
+<span class="c1">#Define the loss function
+</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">losses</span><span class="p">.</span><span class="n">CategoricalCrossentropy</span><span class="p">()</span>
+
+<span class="c1">#Define
+</span></code></pre></div></div>
+
+<p>As you can see from above, GPT3 not only understands the PyTorch code but also was able to generate the code to Tensorflow with correct syntax. I think I may have underestimated the number of tokens, hence the text that was generated was limited, but it was ample proof that GPT3 is able to perform such conversion.</p>
+
+<h3 id="terraform-to-cloudformation">Terraform to Cloudformation</h3>
+
+<p>For another transformation, I have chosen Cloudformation and Terraform tools which are great tools for developing the Infrastructure as a Code practice. For folks who are not aware, Cloudformation is built by AWS to support building AWS Infrastructure using its services whereas terraform is a multi-cloud enabler tool that supports multi-clouds like AWS, Azure, GCP etc.</p>
+
+<p>Input ⇒</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#Cloudformation</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">Terraform:</span><span class="w">
+
+</span><span class="err">Cloudformation:</span><span class="w"> 
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AWS::IAM::Policy"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"PolicyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"root"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"PolicyDocument"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"Roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"Ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RootRole"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">Terraform:</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Output ⇒</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#Cloudformation</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">Terraform:</span><span class="w">
+
+</span><span class="err">Cloudformation:</span><span class="w"> 
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AWS::IAM::Policy"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"PolicyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"root"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"PolicyDocument"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"Roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"Ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RootRole"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">Terraform:</span><span class="w">
+
+</span><span class="err">resource</span><span class="w"> </span><span class="s2">"aws_iam_policy"</span><span class="w"> </span><span class="s2">"root"</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+</span><span class="err">statement</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+</span><span class="err">action</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="s2">"*"</span><span class="w">
+
+</span><span class="err">resources</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"*"</span><span class="p">]</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">resource</span><span class="w"> </span><span class="s2">"aws_iam_role"</span><span class="w"> </span><span class="s2">"root"</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+</span><span class="err">assume_role_policy</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="s2">"${aws_iam_policy.root.arn}"</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">above</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">simple</span><span class="w"> </span><span class="err">example</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">how</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">create</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">role</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">attach</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">policy</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">it.</span><span class="w">
+
+</span><span class="err">Cloudformation:</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+
+</span><span class="nl">"AWSTemplateFormatVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2010-09-09"</span><span class="p">,</span><span class="w">
+
+</span><span class="nl">"Description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+
+</span><span class="nl">"Resources"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+</span><span class="nl">"MySecurityGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+</span><span class="nl">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AWS::EC2::SecurityGroup"</span><span class="p">,</span><span class="w">
+
+</span><span class="nl">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+</span><span class="nl">"GroupDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+
+</span><span class="nl">"SecurityGroupIngress"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+
+</span><span class="nl">"IpProtocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tcp"</span><span class="p">,</span><span class="w">
+
+</span><span class="s2">"
+</span></code></pre></div></div>
+
+<p><strong>This is something interesting that happened.</strong> I had set the Response Length to 199, however, the response was lower than the 199 tokens, so why did GPT3 had to respond with this example for the security group? I observed this similar pattern for a few more examples, as per my understanding, it may be due to the GPT3 side that if the number of tokens is higher than the output response required number of tokens, it’s trying to generate unnecessary content without any pre-defined output. This can be fixed using the Frequency and Presence penalty option which can be set from the parameters.</p>
+
+<p>This begs another question, can GPT3 understand the different services that different cloud providers have and do changes according to that? Let’s try it out.</p>
+
+<h3 id="cloudformation-to-azure-resource-manager">Cloudformation to Azure Resource Manager</h3>
+
+<p>For this challenge, I have taken the task of converting an AWS based IAM Policy and convert it to Azure IAM Policy.</p>
+
+<p>Input ⇒</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#Cloudformation</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">Azure</span><span class="w"> </span><span class="err">Resource</span><span class="w"> </span><span class="err">Manager:</span><span class="w">
+</span><span class="err">Cloudformation:</span><span class="w"> 
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AWS::IAM::Policy"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"PolicyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"root"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"PolicyDocument"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"Roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"Ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RootRole"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">Azure</span><span class="w"> </span><span class="err">Resource</span><span class="w"> </span><span class="err">Manager:</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Output ⇒</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#Cloudformation</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">Azure</span><span class="w"> </span><span class="err">Resource</span><span class="w"> </span><span class="err">Manager:</span><span class="w">
+</span><span class="err">Cloudformation:</span><span class="w"> 
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AWS::IAM::Policy"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"PolicyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"root"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"PolicyDocument"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"Roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"Ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RootRole"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">Azure</span><span class="w"> </span><span class="err">Resource</span><span class="w"> </span><span class="err">Manager:</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nl">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nl">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="s2">"*"</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nl">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="s2">"*"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nl">"Roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nl">"Ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RootRole"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">comparison</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">two</span><span class="w"> </span><span class="err">formats:</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">comparison</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">two</span><span class="w"> </span><span class="err">formats:</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">comparison</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">two</span><span class="w"> </span><span class="err">formats:</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">comparison</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">two</span><span class="w"> </span><span class="err">formats:</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">comparison</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">two</span><span class="w"> </span><span class="err">formats:</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">comparison</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">two</span><span class="w"> </span><span class="err">formats:</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">comparison</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">two</span><span class="w"> </span><span class="err">formats:</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">comparison</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">two</span><span class="w"> </span><span class="err">formats:</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">comparison</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">two</span><span class="w"> </span><span class="err">formats:</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">comparison</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">two</span><span class="w"> </span><span class="err">formats:</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Unfortunately, GPT3 is not quite there yet. As you could see it’s not giving any kind of relevant info to us. The last few words were gibberish and repetitive in nature. I also checked the ARM Template which it does not look like it was able to capture the relevant details.</p>
+
+<p>Another observation, I had was if you accidently put the wrong input instruction sentence something like below ⇒</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#Azure</span><span class="w"> </span><span class="err">Resource</span><span class="w"> </span><span class="err">Manager</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">Cloudformation:</span><span class="w">
+</span><span class="err">Cloudformation:</span><span class="w"> 
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AWS::IAM::Policy"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"PolicyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"root"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"PolicyDocument"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"Roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"Ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RootRole"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">Azure</span><span class="w"> </span><span class="err">Resource</span><span class="w"> </span><span class="err">Manager:</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p>It will give you the below output ⇒</p>
+
+<p>Output ⇒</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#Azure</span><span class="w"> </span><span class="err">Resource</span><span class="w"> </span><span class="err">Manager</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">Cloudformation:</span><span class="w">
+</span><span class="err">Cloudformation:</span><span class="w"> 
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AWS::IAM::Policy"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"PolicyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"root"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"PolicyDocument"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"Action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"Roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"Ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RootRole"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">Azure</span><span class="w"> </span><span class="err">Resource</span><span class="w"> </span><span class="err">Manager:</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nl">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nl">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="s2">"*"</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nl">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="s2">"*"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nl">"Roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="nl">"Ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RootRole"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">list</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">most</span><span class="w"> </span><span class="err">common</span><span class="w"> </span><span class="err">operations</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">performed</span><span class="w"> </span><span class="err">using</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">AWS</span><span class="w"> </span><span class="err">CLI.</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">list</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">most</span><span class="w"> </span><span class="err">common</span><span class="w"> </span><span class="err">operations</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">performed</span><span class="w"> </span><span class="err">using</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">AWS</span><span class="w"> </span><span class="err">CLI.</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">list</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">most</span><span class="w"> </span><span class="err">common</span><span class="w"> </span><span class="err">operations</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">performed</span><span class="w"> </span><span class="err">using</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">AWS</span><span class="w"> </span><span class="err">CLI.</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">list</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">most</span><span class="w"> </span><span class="err">common</span><span class="w"> </span><span class="err">operations</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">performed</span><span class="w"> </span><span class="err">using</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">AWS</span><span class="w"> </span><span class="err">CLI.</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">list</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">most</span><span class="w"> </span><span class="err">common</span><span class="w"> </span><span class="err">operations</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">performed</span><span class="w"> </span><span class="err">using</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">AWS</span><span class="w"> </span><span class="err">CLI.</span><span class="w">
+
+</span><span class="err">The</span><span class="w"> </span><span class="err">following</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">list</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">most</span><span class="w"> </span><span class="err">common</span><span class="w"> </span><span class="err">operations</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">can</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">performed</span><span class="w"> </span><span class="err">using</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">AWS</span><span class="w">
+</span></code></pre></div></div>
+
+<p>It looks like GPT3 tried to simply copy paste the input and present it into the output.</p>
+
+<h2 id="yaml-format">YAML Format</h2>
+
+<p>The inputs that I was providing were all in the JSON format, hence I decided to change it to YAML format.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#Terraform</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">Cloudformation:</span><span class="w">
+</span><span class="err">Cloudformation:</span><span class="w"> 
+
+</span><span class="err">Type:</span><span class="w"> </span><span class="err">'AWS::IAM::Policy'</span><span class="w">
+</span><span class="err">Properties:</span><span class="w">
+  </span><span class="err">PolicyName:</span><span class="w"> </span><span class="err">root</span><span class="w">
+  </span><span class="err">PolicyDocument:</span><span class="w">
+    </span><span class="err">Version:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="w">
+    </span><span class="err">Statement:</span><span class="w">
+      </span><span class="err">-</span><span class="w"> </span><span class="err">Effect:</span><span class="w"> </span><span class="err">Allow</span><span class="w">
+        </span><span class="err">Action:</span><span class="w"> </span><span class="err">'*'</span><span class="w">
+        </span><span class="err">Resource:</span><span class="w"> </span><span class="err">'*'</span><span class="w">
+  </span><span class="err">Roles:</span><span class="w">
+    </span><span class="err">-</span><span class="w"> </span><span class="err">!Ref</span><span class="w"> </span><span class="err">RootRole</span><span class="w">
+
+</span><span class="err">Terraform:</span><span class="w"> 
+</span></code></pre></div></div>
+
+<p>Here is the output ⇒</p>
+
+<p><img src="assets/images/gpt3/terraform-to-cft.png" alt="CFT" /></p>
+
+<p>After some digging into the GPT3 docs I came to know that currently GPT3 only supports JSON Format. Currently YAML format is not supported, hope this support gets added soon 🤞</p>
+
+<h2 id="chat">Chat</h2>
+
+<p>GPT3 also features a chat option which makes the GPT3 as a bot which responds to any input you ask it. So I tried asking a few questions to GPT3 -</p>
+
+<h3 id="information-about-covid-19">Information about Covid 19</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Human</span><span class="p">:</span> <span class="n">Is</span> <span class="n">Covid</span> <span class="mi">19</span> <span class="n">dangerous</span><span class="err">?</span>
+<span class="n">AI</span><span class="p">:</span> <span class="n">I</span> <span class="n">dont</span> <span class="n">know</span> <span class="n">though</span> <span class="n">there</span> <span class="n">are</span> <span class="n">stories</span> <span class="n">that</span> <span class="n">I</span> <span class="n">read</span> <span class="n">online</span><span class="p">.</span> <span class="n">The</span> <span class="n">story</span> <span class="n">claims</span> <span class="n">that</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">dangerous</span> <span class="n">drug</span> <span class="ow">and</span> <span class="n">produces</span> <span class="n">huge</span> <span class="n">addiction</span><span class="p">.</span> <span class="n">I</span> <span class="n">found</span> <span class="n">the</span> <span class="n">best</span> <span class="n">information</span> <span class="n">online</span> <span class="n">about</span> <span class="n">that</span> <span class="n">subject</span><span class="p">.</span>
+</code></pre></div></div>
+
+<p>Looks like GPT3 is not aware about Covid 19. It is under the assumption that Covid 19 is a drug and can be addictive.</p>
+
+<h3 id="mona-lisa">Mona Lisa</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Human</span><span class="p">:</span> <span class="n">Where</span> <span class="ow">is</span> <span class="n">Mona</span> <span class="n">Lisa</span><span class="err">?</span>
+<span class="n">AI</span><span class="p">:</span> <span class="n">The</span> <span class="n">Mona</span> <span class="n">Lisa</span> <span class="ow">is</span> <span class="n">currently</span> <span class="n">housed</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Louvre</span> <span class="n">Museum</span> <span class="ow">in</span> <span class="n">Paris</span><span class="p">.</span> <span class="n">The</span> <span class="n">museum</span> <span class="n">houses</span> <span class="n">a</span> <span class="n">replica</span> <span class="n">of</span> <span class="n">the</span> <span class="n">famous</span> <span class="n">painting</span><span class="p">.</span> <span class="n">There</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">magnificent</span> <span class="n">crowd</span> <span class="n">to</span> <span class="n">see</span> <span class="n">the</span> <span class="n">famous</span> <span class="n">painting</span> 
+<span class="n">on</span> <span class="n">a</span> <span class="n">daily</span> <span class="n">basis</span><span class="p">.</span>
+</code></pre></div></div>
+
+<p>The response is correct. It was able to collect the latest and the most updated information from the Internet. This is very good, since as per wikipedia itself mona lisa has been kept and shifted from one place to another through in different time periods in the history. Ref -<a href="https://en.wikipedia.org/wiki/Mona_Lisa">https://en.wikipedia.org/wiki/Mona_Lisa</a></p>
+
+<h3 id="checking-stock-market-price">Checking Stock Market Price</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Human</span><span class="p">:</span> <span class="n">what</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">stock</span> <span class="n">market</span> <span class="k">for</span> <span class="n">amazon</span><span class="err">?</span>
+<span class="n">AI</span><span class="p">:</span> <span class="n">Currently</span><span class="p">,</span> <span class="n">Amazon</span> <span class="ow">is</span> <span class="n">selling</span> <span class="n">at</span> <span class="err">$</span><span class="mi">1</span><span class="p">,</span><span class="mf">168.85</span> <span class="n">per</span> <span class="n">share</span><span class="p">.</span> <span class="n">I</span> <span class="n">found</span> <span class="n">the</span> <span class="n">best</span> <span class="n">info</span> <span class="n">online</span> <span class="n">about</span> <span class="n">that</span> <span class="n">stock</span><span class="p">.</span>
+</code></pre></div></div>
+
+<p>From Google, I found this ⇒</p>
+
+<p><img src="assets/images/gpt3/amazon-stock-prices.png" alt="Stock-Prices" /></p>
+
+<p>Looks like it is picking up the the stock price from the older time period.</p>
+
+<h3 id="general-knowledge-questions">General Knowledge Questions</h3>
+
+<p>On 17th March 2021, Tanzania’s president died due to covid and a few days later Samia Suluhu Hassan was appointed as the President. On 10th April 2021, I tried asking the following question to GPT3- Who is Tanzania President?</p>
+
+<p>Input ⇒</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">The</span> <span class="n">following</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">conversation</span> <span class="k">with</span> <span class="n">an</span> <span class="n">AI</span> <span class="n">assistant</span><span class="p">.</span> <span class="n">The</span> <span class="n">assistant</span> <span class="ow">is</span> <span class="n">helpful</span><span class="p">,</span> <span class="n">creative</span><span class="p">,</span> <span class="n">clever</span><span class="p">,</span> <span class="ow">and</span> <span class="n">very</span> <span class="n">friendly</span><span class="p">.</span>
+
+<span class="n">Human</span><span class="p">:</span> <span class="n">Hello</span><span class="p">,</span> <span class="n">who</span> <span class="n">are</span> <span class="n">you</span><span class="err">?</span>
+<span class="n">AI</span><span class="p">:</span> <span class="n">I</span> <span class="n">am</span> <span class="n">an</span> <span class="n">AI</span> <span class="n">created</span> <span class="n">by</span> <span class="n">OpenAI</span><span class="p">.</span> <span class="n">How</span> <span class="n">can</span> <span class="n">I</span> <span class="n">help</span> <span class="n">you</span> <span class="n">today</span><span class="err">?</span>
+<span class="n">Human</span><span class="p">:</span> <span class="n">Who</span> <span class="ow">is</span> <span class="n">Tanzania</span> <span class="n">President</span><span class="err">?</span>
+<span class="n">Human</span><span class="p">:</span> <span class="n">Who</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">current</span> <span class="n">president</span> <span class="n">of</span> <span class="n">Tanzania</span><span class="err">?</span>
+</code></pre></div></div>
+
+<p>Here is the output ⇒</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">The</span> <span class="n">following</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">conversation</span> <span class="k">with</span> <span class="n">an</span> <span class="n">AI</span> <span class="n">assistant</span><span class="p">.</span> <span class="n">The</span> <span class="n">assistant</span> <span class="ow">is</span> <span class="n">helpful</span><span class="p">,</span> <span class="n">creative</span><span class="p">,</span> <span class="n">clever</span><span class="p">,</span> <span class="ow">and</span> <span class="n">very</span> <span class="n">friendly</span><span class="p">.</span>
+
+<span class="n">Human</span><span class="p">:</span> <span class="n">Hello</span><span class="p">,</span> <span class="n">who</span> <span class="n">are</span> <span class="n">you</span><span class="err">?</span>
+<span class="n">AI</span><span class="p">:</span> <span class="n">I</span> <span class="n">am</span> <span class="n">an</span> <span class="n">AI</span> <span class="n">created</span> <span class="n">by</span> <span class="n">OpenAI</span><span class="p">.</span> <span class="n">How</span> <span class="n">can</span> <span class="n">I</span> <span class="n">help</span> <span class="n">you</span> <span class="n">today</span><span class="err">?</span>
+<span class="n">Human</span><span class="p">:</span> <span class="n">Who</span> <span class="ow">is</span> <span class="n">Tanzania</span> <span class="n">President</span><span class="err">?</span>
+<span class="n">AI</span><span class="p">:</span> <span class="n">The</span> <span class="n">current</span> <span class="n">president</span> <span class="n">of</span> <span class="n">Tanzania</span> <span class="ow">is</span> <span class="n">Dr</span><span class="p">.</span> <span class="n">John</span> <span class="n">Magufuli</span><span class="p">.</span>  <span class="n">He</span> <span class="n">was</span> <span class="n">sworn</span> <span class="ow">in</span> <span class="k">as</span> <span class="n">president</span> <span class="ow">in</span> <span class="n">November</span> <span class="mf">2015.</span> <span class="n">I</span> <span class="n">have</span> <span class="n">found</span> <span class="n">the</span> <span class="n">best</span> <span class="n">resources</span> <span class="n">on</span> <span class="n">the</span> <span class="n">internet</span> <span class="n">about</span> <span class="n">Tanzania</span> <span class="n">President</span><span class="p">.</span>
+</code></pre></div></div>
+
+<p><strong>This response of the GPT3 is outdated and could lead to misinformation which can be an issue.</strong> I tried to rephrase the question by asking - Who is the current president of Tanzania?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Human</span><span class="p">:</span> <span class="n">Who</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">current</span> <span class="n">president</span> <span class="n">of</span> <span class="n">Tanzania</span><span class="err">?</span>
+</code></pre></div></div>
+
+<p>Output ⇒</p>
+
+<p><img src="assets/images/gpt3/tanzania-president.png" alt="President" /></p>
+
+<p>Since I asked for the current president of Tanzania, this response seems vague and incorrect. I think this maybe due to some minor bias towards the titles which maybe be present on the internet.</p>
+
+<p><strong>Quick Update</strong> ⇒</p>
+
+<p><strong>On conversation with one of the OpenAI member I came to know that GPT3 last got updated in August 2020, hence I was observing the outdated results.</strong></p>
+
+<h2 id="minor-things">Minor Things</h2>
+
+<ul>
+  <li>If you have trailing spaces between texts, it gives you warnings.</li>
+  <li>It many times misclassified my output as Unsafe, especially in cases where I accidentally put incorrect conversion sentence.</li>
+  <li>You can report any wrong output or issue by clicking the report issue option in playground.</li>
+</ul>
+
+<p><img src="assets/images/gpt3/minor-things.png" alt="Minor" /></p>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://andrewmayneblog.wordpress.com/">https://andrewmayneblog.wordpress.com/</a></li>
+  <li><a href="https://gpttools.com/">https://gpttools.com/</a></li>
+  <li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-policy.html</a></li>
+</ul>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+                <section class="subscribe-form">
+                    <h3 class="subscribe-form-title">Subscribe to Ramit Surana</h3>
+                    <p>Get the latest posts delivered right to your inbox</p>
+                    <form method="post" action="/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"  /><input class="location" type="hidden" name="location"  /><input class="referrer" type="hidden" name="referrer"  />
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email"  placeholder="youremail@example.com" />
+    </div>
+    <button class="" type="submit" disabled><span>Subscribe</span></button>
+    <script type="text/javascript">(function(g,h,o,s,t){h[o]('.location')[s]=h[o]('.location')[s] || g.location.href;h[o]('.referrer')[s]=h[o]('.referrer')[s] || h.referrer;})(window,document,'querySelector','value');</script>
+</form>
+
+                </section>
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/assets/images/profile-pic-2.jpg" alt="ramitsurana" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/author/ramitsurana">Ramit Surana</a></h4>
+                                
+                                    <p>Author</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/author/ramitsurana">Read More</a>
+                        </div>
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+                <section class="post-full-comments">
+                    <div id="disqus_thread"></div>
+                    <script src="https://utteranc.es/client.js"
+                        repo="ramitsurana/ramitsurana.github.io"
+                        issue-term="title"
+                        theme="github-light"
+                        crossorigin="anonymous"
+                        async>
+                    </script>
+                    <!-- <script>
+                        var disqus_config = function () {
+                            var this_page_url = '/gpt3-part-1';
+                            var this_page_identifier = '/gpt3-part-1';
+                            var this_page_title = 'I tried out GPT3, Here is what I did - Part 1';
+                        };
+                        (function() {
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://ramitsurana-github-io.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script> -->
+                </section>
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/protein-folding">
+                <div class="post-card-image" style="background-image: url(/assets/images/grapes.jpg)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/protein-folding">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Protein folding</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Molecules</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Cell wall</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Understanding Protein Folding</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p>How Protein Folding Works?</p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/profile-pic-2.jpg" alt="Ramit Surana" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/ramitsurana/">Ramit Surana</a>
+                        </span>
+                    
+                
+                <span class="reading-time">
+                    
+                    
+                      3 min read
+                    
+                </span>
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="/">
+            
+                <img src="/assets/images/favicon.png" alt="Ramit Surana icon" />
+            
+            <span>Ramit Surana</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">I tried out GPT3, Here is what I did - Part 1</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=I+tried+out+GPT3%2C+Here+is+what+I+did+-+Part+1&amp;url=https://ramitsurana.github.io/gpt3-part-1"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://ramitsurana.github.io/gpt3-part-1"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="/">Ramit Surana</a> &copy; 2021</section>
+                <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> &
+                    <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">Latest Posts</a>
+                    <a href="https://facebook.com/ramitsurana" target="_blank" rel="noopener">Facebook</a>
+                    <a href="https://twitter.com/ramitsurana" target="_blank" rel="noopener">Twitter</a>
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+        <div id="subscribe" class="subscribe-overlay">
+            <a class="subscribe-overlay-close" href="#"></a>
+            <div class="subscribe-overlay-content">
+                
+                <h1 class="subscribe-overlay-title">Subscribe to Ramit Surana</h1>
+                <p class="subscribe-overlay-description">Stay up to date! Get all the latest &amp; greatest posts delivered straight to your inbox</p>
+                <form method="post" action="/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"  /><input class="location" type="hidden" name="location"  /><input class="referrer" type="hidden" name="referrer"  />
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email"  placeholder="youremail@example.com" />
+    </div>
+    <button class="" type="submit" disabled><span>Subscribe</span></button>
+    <script type="text/javascript">(function(g,h,o,s,t){h[o]('.location')[s]=h[o]('.location')[s] || g.location.href;h[o]('.referrer')[s]=h[o]('.referrer')[s] || h.referrer;})(window,document,'querySelector','value');</script>
+</form>
+
+            </div>
+        </div>
+    
+
+    <!-- highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
+    <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script>
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-71344758-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

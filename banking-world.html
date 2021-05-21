@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>Using P2P networking for digital banking transactions</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="Ramit Surana Personal Blog" />
+    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png" />
+    <link rel="canonical" href="/banking-world" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="Ramit Surana" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Using P2P networking for digital banking transactions" />
+    <meta property="og:description" content="Introduction What is Digital Currency How does a transaction actually occour The problem for banks What is Bitcoin How does Bitcoin actually work What is a Blockchain Using Epehream Using Mist Browser Building Dapps What is IPFS Using IPFS Some cool stuff to check out Conclusion Today’s the internet is" />
+    <meta property="og:url" content="/banking-world" />
+    <meta property="og:image" content="/assets/images/writing.jpg" />
+    <meta property="article:publisher" content="https://www.facebook.com/ramitsurana" />
+    <meta property="article:author" content="https://www.facebook.com/ramitsurana" />
+    <meta property="article:published_time" content="2017-01-11T00:00:00+00:00" />
+    <meta property="article:modified_time" content="2017-01-11T00:00:00+00:00" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Using P2P networking for digital banking transactions" />
+    <meta name="twitter:description" content="Introduction What is Digital Currency How does a transaction actually occour The problem for banks What is Bitcoin How does Bitcoin actually work What is a Blockchain Using Epehream Using Mist Browser Building Dapps What is IPFS Using IPFS Some cool stuff to check out Conclusion Today’s the internet is" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image" content="/assets/images/writing.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Ramit Surana" />
+    <meta name="twitter:site" content="@ramitsurana" />
+    <meta name="twitter:creator" content="@ramitsurana" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Ramit Surana",
+        "logo": "/"
+    },
+    "url": "/banking-world",
+    "image": {
+        "@type": "ImageObject",
+        "url": "/assets/images/writing.jpg",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/banking-world"
+    },
+    "description": "Introduction What is Digital Currency How does a transaction actually occour The problem for banks What is Bitcoin How does Bitcoin actually work What is a Blockchain Using Epehream Using Mist Browser Building Dapps What is IPFS Using IPFS Some cool stuff to check out Conclusion Today’s the internet is"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="Using P2P networking for digital banking transactions" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="/">Ramit Surana</a>
+            
+        
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://facebook.com/ramitsurana" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+</a>
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/ramitsurana" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+            <a class="subscribe-button" href="#subscribe">Subscribe</a>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full  post ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="11 January 2017">11 January 2017</time>
+                    
+                </section>
+                <h1 class="post-full-title">Using P2P networking for digital banking transactions</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/assets/images/writing.jpg)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#what-is-digital-currency">What is Digital Currency</a></li>
+  <li><a href="#how-does-a-transaction-actually-occour">How does a transaction actually occour</a></li>
+  <li><a href="#the-problem-for-banks">The problem for banks</a></li>
+  <li><a href="#what-is-bitcoin">What is Bitcoin</a></li>
+  <li><a href="#how-does-bitcoin-actually-work">How does Bitcoin actually work</a></li>
+  <li><a href="#what-is-a-blockchain">What is a Blockchain</a></li>
+  <li><a href="#using-epehream">Using Epehream</a></li>
+  <li><a href="#using-mist-browser">Using Mist Browser</a></li>
+  <li><a href="#building-dapps">Building Dapps</a></li>
+  <li><a href="#what-is-ipfs">What is IPFS</a></li>
+  <li><a href="#using-ipfs">Using IPFS</a></li>
+  <li><a href="#some-cool-stuff-to-check-out">Some cool stuff to check out</a></li>
+  <li><a href="#conclusion">Conclusion</a></li>
+</ul>
+
+<p>Today’s the internet is almost everything.But making things fast,secure and for banks, the perfect term would be micro-payments.Doing this type of payments requires a completely new transformation for the banks.This gives the open space for a new term called as FinTech or Financial Technology.We will be discussing more and more such terms in the below post.So hope you guys enjoy it !</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Today everthing is on the internet.We all are going through a completely new era of transformation.With major countries such as India pushing efforts towards a cashless economy,it has become important for the banks to develop new methods and techniques for helping large quantity of customers go cashless easily.</p>
+
+<h2 id="what-is-digital-currency">What is Digital Currency</h2>
+
+<p>Paper as important as the ones used in making the currency for several countries is still a piece of paper.Just because the government makes it and authorises it does not make it invaluable.A digtal currency is a form of cash that exists only in the digital sense.Even if you have a quarter millon dollars in your account it does not mean that the government has that much amount of cash with them in your name or account.Every bank has a certain cash amount limit that they could store.This amount is usually in the range of amount of couple of hundered of millions of dollars.Beyond that the central body controlling and authorizing the banks in every country stops them to store any exceeding amount for the same.The federal Reserve banks imposes heavy penalty charges on banks failing to abide by its rules and regulations.</p>
+
+<h2 id="how-does-a-transaction-actually-occour">How does a transaction actually occour</h2>
+
+<p>Here is a diagram depicting what actually happens when anyone transfers or receives a certain amount to/from another bank account</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/8342133/21854458/d0e20348-d840-11e6-9b9f-0f445a2a9ed1.png" alt="bankops-1" /></p>
+
+<p>It is simple as you can see above that a third party is duly innvolved whenever a transaction is happening.This third party can be VISA,Paypal,Rupay etc. The third party acts a intermediary between transactions happening and also helping in making it secure.THe Https certificate is used everywhere and everything is duly encrypted.Also the whole transaction system occours over a different port such as 401.</p>
+
+<h2 id="the-problem-for-banks">The problem for banks</h2>
+
+<p>I think,the real problem that lies for the banks is that with a lot of customers around the globe it is impossible for the banks to just deal with one third party client such as Paypal or Visa in every possible case.It needs to make sure that wherever the bank provides it services it has a proper third party client for the same.Recently there have been a lot of newcomers in this domain such as Rupay and .The banks pay a huge amount of money for the services that these third party clients provide.</p>
+
+<h2 id="what-is-bitcoin-">What is Bitcoin ?</h2>
+
+<p>Bitcoin is a small yet powerful concept for the same.It was first introduced by Mashimoto in 2009.(Atleast that’s what appears on the research paper that has been published) In reality the founders of Bitcoin are still unknown.There have been several claims ans stuff but it’s hard to say anything for sure.It uses the P2P protocol for transferring and receving money.It is SHA-256 encrypted so it’s hard enough for people to crack it.One of the main features of the Bitcoin is that there is no reqirement for any third party for transferring the bitcoins from one place to another.This makes it tough for people to maintain a trust over it.In simple words,bitcoin is simple P2P networking with no governments and banks in between.</p>
+
+<h2 id="how-does-bitcoin-actually-work">How does Bitcoin actually work</h2>
+
+<p>If you already thrilled by the idea of Bitcoin and are thinking of buying some.Trust me and do not buy it.In the past the usage of bitcoins have been done by terroists for the same.So the big question still remains unanswered,how does it work ? Well for starters it’s simple.The image below shares the exact picture of how bitcoin system works:</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/8342133/21854763/028cc63e-d842-11e6-84eb-edf6abc4742f.png" alt="how-bitcoin-works-1" /></p>
+
+<p>Actually Bitcoin is one of the implementations of Blockchain.It works by adopting the blockchain methodology</p>
+
+<h2 id="what-is-a-blockchain">What is a Blockchain</h2>
+
+<p>Blockchain is a series of networks built using a variety of different computers and packets.The transfer of bitcoins is done through the same.Blockchain depends on a variety of different stuff.It is important for banks to ensure that these stuff can be easily be easily focussed and maintained with time due to legal duties they are bound to:</p>
+
+<ul>
+  <li>Smart Assessts</li>
+  <li>Public Ledgers</li>
+  <li>Private Ledgers</li>
+</ul>
+
+<p>and more….</p>
+
+<h2 id="using-epehream">Using Epehream</h2>
+
+<p>The Epheream is a cool new open source platform for using blockchain in real time scenarios.It helps us unlock new transactions that can take place using the Bloackchain concept.Its written in <a href="https://golang.org">Go</a>.Awesome ! It is easy to use and various apps could be built for the same on top of it.Below here I am showing you a small example of one of the apps that I have been building on top of it.</p>
+
+<p>Download the latest package for your os from <a href="https://github.com/ethereum/mist/releases">Ethereum Releases</a></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install software-properties-common
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo add-apt-repository -y ethereum/ethereum
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get update
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install etherum
+</code></pre></div></div>
+
+<p>For using geth console:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo geth console
+</code></pre></div></div>
+
+<h2 id="using-mist-browser">Using Mist Browser</h2>
+
+<p>Download the Debian file of mist browser from <a href="https://github.com/ethereum/mist/releases">Download page</a>.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/8342133/21855922/1dd62c74-d846-11e6-9dcb-856b1ffd5199.png" alt="mist" /></p>
+
+<h2 id="building-dapps">Building Dapps</h2>
+
+<p>Mist browser is the tool of choice to browse and use Ðapps.Dapps are the applications built by developers using which you can easily do amazing things.They are easy to build and after some early releases can be deployed over enterprise.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/8342133/21855128/4badb3fe-d843-11e6-814c-aac0cc01548e.jpg" alt="the-ethereum-experience-42-638" /></p>
+
+<h2 id="what-is-ipfs-">What is IPFS ?</h2>
+
+<p>Do you just trust and heavily rely on Https certificates for your security ? Think again.IPFS is one those disruptive pieces of technology that can make you adopt new approaches to the security lines.For banks security is one of the prime concerns as black hat hackers are trying to keep on attacking.IPFS is a peer-to-peer hypermedia protocol to make the web faster, safer, and more open.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/8342133/21854895/80d83726-d842-11e6-8906-2174a74a0f32.png" alt="1456818734ipfs-logo" /></p>
+
+<h2 id="using-ipfs">Using IPFS</h2>
+
+<p>Download the tar package available at https://ipfs.io/docs/install/.</p>
+
+<p>Run the installation script,found in the package.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/8342133/21089726/74afb22a-c060-11e6-84d6-f3ce22331622.png" alt="ipfs-install" /></p>
+
+<p>Initialize the ipfs using:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ipfs init
+</code></pre></div></div>
+<p><img src="https://cloud.githubusercontent.com/assets/8342133/21089799/0aa57d82-c061-11e6-8e06-23da0c5d1b8c.png" alt="ipfs-init" /></p>
+
+<p>Note your ipfs hash,and try showing the output using cat:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ipfs cat ($Hash)
+</code></pre></div></div>
+
+<p><img src="https://cloud.githubusercontent.com/assets/8342133/21089935/4159eba0-c062-11e6-9961-f29e04797469.png" alt="ipfs-cat" /></p>
+
+<h2 id="some-cool-stuff-to-check-out">Some cool stuff to check out</h2>
+
+<ul>
+  <li><a href="https:openbaazar.org">OpenBaazar</a> - Combination of eBay and Torrent</li>
+  <li><a href="https://coinbase.com">CoinBase</a> - A Wallet service for storing and managing Bitcoins</li>
+  <li><a href="http://filecoin.io/">Filecoin</a> - Storage solution for storing coins</li>
+  <li><a href="https://beakerbrowser.com">Beaker</a> - P2P based browser</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Banks are fun.No seriously :).It has been a real fun time for me to explore such unique stuff that has been changing the way we live and how the future ahead might be.The advancements in the payment techniques are awesome and I have high hopes that with time these might get better.Hope you guys enjoyed the post and please share your side of the views in the comments too.Have a happy day !</p>
+
+<p>Here are the slides:</p>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/2v9mKJCHXotoj4" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen=""> </iframe>
+<div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ramitsurana/building-digital-transaction-systems-in-the-new-banking-world" title="Building Digital Transaction Systems in the new Banking World" target="_blank">Building Digital Transaction Systems in the new Banking World</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/ramitsurana">Ramit Surana</a></strong> </div>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+                <section class="subscribe-form">
+                    <h3 class="subscribe-form-title">Subscribe to Ramit Surana</h3>
+                    <p>Get the latest posts delivered right to your inbox</p>
+                    <form method="post" action="/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"  /><input class="location" type="hidden" name="location"  /><input class="referrer" type="hidden" name="referrer"  />
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email"  placeholder="youremail@example.com" />
+    </div>
+    <button class="" type="submit" disabled><span>Subscribe</span></button>
+    <script type="text/javascript">(function(g,h,o,s,t){h[o]('.location')[s]=h[o]('.location')[s] || g.location.href;h[o]('.referrer')[s]=h[o]('.referrer')[s] || h.referrer;})(window,document,'querySelector','value');</script>
+</form>
+
+                </section>
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/assets/images/profile-pic-2.jpg" alt="ramitsurana" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/author/ramitsurana">Ramit Surana</a></h4>
+                                
+                                    <p>Author</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/author/ramitsurana">Read More</a>
+                        </div>
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+                <section class="post-full-comments">
+                    <div id="disqus_thread"></div>
+                    <script src="https://utteranc.es/client.js"
+                        repo="ramitsurana/ramitsurana.github.io"
+                        issue-term="title"
+                        theme="github-light"
+                        crossorigin="anonymous"
+                        async>
+                    </script>
+                    <!-- <script>
+                        var disqus_config = function () {
+                            var this_page_url = '/banking-world';
+                            var this_page_identifier = '/banking-world';
+                            var this_page_title = 'Using P2P networking for digital banking transactions';
+                        };
+                        (function() {
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://ramitsurana-github-io.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script> -->
+                </section>
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/containers-production">
+                <div class="post-card-image" style="background-image: url(/assets/images/sky.jpg)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/containers-production">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Containers</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Tips</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Openshift</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Containers in Production</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p>Containers usage tips and tricks.</p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/profile-pic-2.jpg" alt="Ramit Surana" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/ramitsurana/">Ramit Surana</a>
+                        </span>
+                    
+                
+                <span class="reading-time">
+                    
+                    
+                      4 min read
+                    
+                </span>
+            </footer>
+        </div>
+    </article>
+
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/the-6-paradigms-of-software-architectures">
+                <div class="post-card-image" style="background-image: url(/assets/images/team.jpg)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/the-6-paradigms-of-software-architectures">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Software</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Architecture</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Serverless</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Microservices</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">The 6 paradigms of software architectures</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p>Exploring different types of enterprise class software architectures</p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/profile-pic-2.jpg" alt="Ramit Surana" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/ramitsurana/">Ramit Surana</a>
+                        </span>
+                    
+                
+                <span class="reading-time">
+                    
+                    
+                      5 min read
+                    
+                </span>
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="/">
+            
+                <img src="/assets/images/favicon.png" alt="Ramit Surana icon" />
+            
+            <span>Ramit Surana</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">Using P2P networking for digital banking transactions</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Using+P2P+networking+for+digital+banking+transactions&amp;url=https://ramitsurana.github.io/banking-world"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://ramitsurana.github.io/banking-world"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="/">Ramit Surana</a> &copy; 2021</section>
+                <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> &
+                    <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">Latest Posts</a>
+                    <a href="https://facebook.com/ramitsurana" target="_blank" rel="noopener">Facebook</a>
+                    <a href="https://twitter.com/ramitsurana" target="_blank" rel="noopener">Twitter</a>
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+        <div id="subscribe" class="subscribe-overlay">
+            <a class="subscribe-overlay-close" href="#"></a>
+            <div class="subscribe-overlay-content">
+                
+                <h1 class="subscribe-overlay-title">Subscribe to Ramit Surana</h1>
+                <p class="subscribe-overlay-description">Stay up to date! Get all the latest &amp; greatest posts delivered straight to your inbox</p>
+                <form method="post" action="/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"  /><input class="location" type="hidden" name="location"  /><input class="referrer" type="hidden" name="referrer"  />
+
+    <div class="form-group">
+        <input class="subscribe-email" type="email" name="email"  placeholder="youremail@example.com" />
+    </div>
+    <button class="" type="submit" disabled><span>Subscribe</span></button>
+    <script type="text/javascript">(function(g,h,o,s,t){h[o]('.location')[s]=h[o]('.location')[s] || g.location.href;h[o]('.referrer')[s]=h[o]('.referrer')[s] || h.referrer;})(window,document,'querySelector','value');</script>
+</form>
+
+            </div>
+        </div>
+    
+
+    <!-- highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
+    <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script>
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-71344758-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

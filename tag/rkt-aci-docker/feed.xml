@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="/tag/rkt-aci-docker/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/" rel="alternate" type="text/html" />
+  <updated>2021-05-21T08:27:10+00:00</updated>
+  <id>/tag/rkt-aci-docker/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">Ramit Surana | </title>
+  
+
+  
+    <subtitle>Ramit Surana Personal Blog</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Playing with rkt and appc</title>
+      <link href="/playing-with-rkt-and-appc" rel="alternate" type="text/html" title="Playing with rkt and appc" />
+      <published>2016-07-09T00:00:00+00:00</published>
+      <updated>2016-07-09T00:00:00+00:00</updated>
+      <id>/playing-with-rkt-and-appc</id>
+      <content type="html" xml:base="/playing-with-rkt-and-appc">&lt;p&gt;Evolution is an ongoing process. In the containers spectrum it has been a regular custom to experiment with new stuff and make it better with time. Saying so one of the coolest evolving projects is the &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; project by &lt;a href=&quot;http://coreos.com&quot;&gt;Coreos&lt;/a&gt; guys. It is a substitute of the famous &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; container project and uses different methodology than the &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; project. So, I began exploring and found out that its a really interesting approach on building containers.&lt;/p&gt;
+
+&lt;p&gt;In this post I have shared some of my findings below:&lt;/p&gt;
+
+&lt;h2 id=&quot;about-rkt&quot;&gt;About rkt&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; is an awesome project which started way back with a minor conflict of opinions on containers between the &lt;a href=&quot;http://docker.com&quot;&gt;Docker&lt;/a&gt; guys and &lt;a href=&quot;http://coreos.com&quot;&gt;CoreOS&lt;/a&gt; guys. It is designed for security, simplicity, and composability within modern cluster architectures. &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; implements a modern, open, standard container format, the &lt;a href=&quot;http://github.com/appc/spec&quot;&gt;App Container (appc)&lt;/a&gt;, but can also execute other container images, like those created with &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt;. The most fundamental atomic unit in &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; is the pod, which is a group of related containers that share resources. One of the amazing things about &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; is that it is a single binary that integrates with init systems, scripts, and complex devops pipelines.  Containers take their correct place in the PID heirachy and can be managed with standard utilities.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/16660420/ce24e2e0-448b-11e6-97b5-b56079d0f631.png&quot; alt=&quot;rkt-1 0-banner&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;about-appc&quot;&gt;About appc&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://github.com/appc/spec&quot;&gt;appc&lt;/a&gt; defines several independent but composable aspects involved in running application containers, including an image format, runtime environment, and discovery mechanism for application containers. It creates images known as ACI. ACI’s full form is Application Container Image. You can think of it as a similar to &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; Images.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/appc/acbuild&quot;&gt;acbuild&lt;/a&gt; is a simple unix utility for constructing ACI manifests and container filesystems.&lt;a href=&quot;https://github.com/appc/acbuild&quot;&gt;acbuild&lt;/a&gt; presents options for mapping ports, mounting filesystems, and specifying the base containers from which higher-level images are built — a dependency, in &lt;a href=&quot;https://github.com/appc/acbuild&quot;&gt;acbuild&lt;/a&gt; parlance.&lt;/p&gt;
+
+&lt;p&gt;Some of the features of ACI include:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Composable&lt;/li&gt;
+  &lt;li&gt;Security&lt;/li&gt;
+  &lt;li&gt;Decentralization&lt;/li&gt;
+  &lt;li&gt;Open Source&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/16660112/b66d8dc4-448a-11e6-916b-ff109cf64fe7.jpg&quot; alt=&quot;app-container-rkt-14-638&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;building-aci-images&quot;&gt;Building ACI Images&lt;/h1&gt;
+
+&lt;p&gt;Building aci images is easy to use with an awesome &lt;a href=&quot;https://github.com/appc/acbuild&quot;&gt;acbuild&lt;/a&gt; project. Using this project you can easily create your own aci images. Its under heavy development process and might change its workflow in the future. By building aci images you can directly use them with rkt. Much as like you can use &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; images with &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Before starting to use the acibuild you need to follow these steps:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/ramitsurana/6421a4bfb3425a6c018bff85ffcae0d3.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Instead of running multiple commands on the terminal. I have decide to use one of the simple techniques to build an aci image.
+In this technique we use a shell script to automate the process of building an ACI. Using the shell script we can execute multiple &lt;a href=&quot;https://github.com/appc/acbuild&quot;&gt;acbuild&lt;/a&gt; commands. You can consider it as a similar way like using Dockerfile to build your &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; images.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/ramitsurana/06f08da66dc9ec1c3a6299773bdaf4f0.js&quot;&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;building-rkt-containers&quot;&gt;Building rkt containers&lt;/h2&gt;
+
+&lt;p&gt;Here are the steps to follow:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/ramitsurana/0a1c8e9f4af1b01e35c035c9b519564c.js&quot;&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;how-it-works-&quot;&gt;How it works ?&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; works in multiple ways. Some of the most common ways include by using:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Url of aci image,&lt;/li&gt;
+  &lt;li&gt;Using &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; registry&lt;/li&gt;
+  &lt;li&gt;Using &lt;a href=&quot;http://quay.io&quot;&gt;quay.io&lt;/a&gt; registry&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;But all of these include one common thing that is to use the aci images while building up the &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; containers. So I am going to discuss one of the most commonly used methods to build up &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; containers. In this method I am going to fetch a simple docker container from the &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; registry and use it to build up a &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; container.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rkt run --interactive docker://ubuntu --insecure-options=image
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;In the above command, we use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--interactive&lt;/code&gt; flag for using the STDIN and STDOUT devices from your kernel. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--insecure-options=image&lt;/code&gt; is used because some of the docker images don’t have image signature verification. This flag skips the trouble of verifying image. Behind the scenes here’s a depiction of what happens:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/16678420/85a9368a-44fc-11e6-9271-770ce896056c.png&quot; alt=&quot;rkt-work&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Basically what &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; does is simply pull the &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; image from the registry.In every case you have to specify the registry using which you are pulling down the image. As per usage there are two popular options namely, &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; registry and &lt;a href=&quot;http://quay.io&quot;&gt;quay.io&lt;/a&gt;. After it fetches the image. A utility called as &lt;a href=&quot;https://github.com/appc/docker2aci&quot;&gt;docker2aci&lt;/a&gt; is used to convert these images to aci images. Then using this image the rkt container automatically brings up the &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; container.&lt;/p&gt;
+
+&lt;h2 id=&quot;garbage-collection&quot;&gt;Garbage Collection&lt;/h2&gt;
+
+&lt;p&gt;This is one of the features that I love the most about &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; containers. In this feature,&lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; can easily clear out containers that have exited and are not in use. Truly saying I feel that this feature is of very high importance. The reason is that when you deploy a huge lot of containers in real time scenario,it becomes really hard to manage containers which have exited and which are running. This creates a true messy condition for the user.Using the &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; gc command,it can automatically reap exited pods and container images from the local store after a configurable grace period.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/ramitsurana/e22d35562383600e5b68d645cd7a2c52.js&quot;&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;switching-from-docker-to-rkt&quot;&gt;Switching from Docker to rkt&lt;/h2&gt;
+
+&lt;p&gt;As a regular &lt;a href=&quot;http://docker.com&quot;&gt;Docker&lt;/a&gt; user myself I find it hard to understand and use all the best of commands in &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt;.So
+I have tried to summarize some of the commands that can be used while switching from &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; to &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; :&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Docker&lt;/th&gt;
+      &lt;th&gt;rkt&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;docker pull&lt;/td&gt;
+      &lt;td&gt;rkt fetch&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;docker ps&lt;/td&gt;
+      &lt;td&gt;rkt list&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;docker images&lt;/td&gt;
+      &lt;td&gt;rkt image list&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;docker run -i -t&lt;/td&gt;
+      &lt;td&gt;rkt run –interactive&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Hope you enjoyed this post,please tell us your opinions in the comments section below.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>ramitsurana</name>
+        
+        
+      </author>
+
+      
+        <category term="[&quot;coreos&quot;, &quot;rkt&quot;, &quot;containers&quot;]" />
+      
+
+      
+        <category term="rkt aci docker" />
+      
+
+      
+        <summary type="html">Evolution is an ongoing process. In the containers spectrum it has been a regular custom to experiment with new stuff and make it better with time. Saying so one of the coolest evolving projects is the rkt project by Coreos guys. It is a substitute of the famous docker container project and uses different methodology than the docker project. So, I began exploring and found out that its a really interesting approach on building containers.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

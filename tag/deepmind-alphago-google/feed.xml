@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="/tag/deepmind-alphago-google/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/" rel="alternate" type="text/html" />
+  <updated>2021-05-21T08:27:10+00:00</updated>
+  <id>/tag/deepmind-alphago-google/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">Ramit Surana | </title>
+  
+
+  
+    <subtitle>Ramit Surana Personal Blog</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">AlphaGo by Deepmind</title>
+      <link href="/alphago" rel="alternate" type="text/html" title="AlphaGo by Deepmind" />
+      <published>2021-04-12T00:00:00+00:00</published>
+      <updated>2021-04-12T00:00:00+00:00</updated>
+      <id>/alphago</id>
+      <content type="html" xml:base="/alphago">&lt;h2 id=&quot;history-of-go&quot;&gt;History of Go&lt;/h2&gt;
+
+&lt;p&gt;The history of computer Go began in the early 1970s, when it was demonstrated that reasonably good players could be developed by neural networks. A few years later, the idea that a computer could play Go well enough to beat a professional human player was proposed, but the idea was generally dismissed as being far too ambitious.&lt;/p&gt;
+
+&lt;p&gt;In 1989, researchers at the University of Essex developed a Go-playing program using neural networks called Deep Thought. Deep Thought was able to beat a top Japanese professional Go player, Takagi Shoichi, in 1989. In 1997, IBM’s Deep Blue program beat the world champion, Garry Kasparov, in chess. This victory sparked interest in developing a program to beat the best Go players in the world.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-alphago&quot;&gt;What is AlphaGo?&lt;/h2&gt;
+
+&lt;p&gt;A Go program based on a Monte Carlo tree search algorithm, developed by researchers at Google DeepMind, defeated the European Go champion in October 2015. This program, called AlphaGo, beat the Go champion, Lee Sedol, in March 2016. The program that beat Lee Sedol is a neural network that is able to “learn” in a way that mimics human learning.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-alphago-works&quot;&gt;How AlphaGo Works?&lt;/h2&gt;
+
+&lt;p&gt;The program uses two neural networks: one to evaluate positions on the board, and the other to select moves. The idea was to have the program play against itself, and learn by itself. The program started out playing only at the amateur level, but learned to play good enough moves to beat the top players in the world.The program learned to select the good moves by playing against itself millions of times, while also playing against other software.The program “learned” by playing against itself, and adjusting its own rules. The program can now make moves better than any human player can make. The program has been defeated at times, but it has proven in each case that it can learn from its mistakes. The next step is to get the program to play the game at an even higher level, and to have it win every game. The program has already been used to test and improve other programs used in other types of games. It may be possible for the program to be used to improve some other types of programs that are used by humans.&lt;/p&gt;
+
+&lt;h2 id=&quot;future-of-aplhago&quot;&gt;Future of AplhaGo&lt;/h2&gt;
+
+&lt;p&gt;The development of the AlphaGo program has caused people to think about other ways to improve the program. One idea is to have it play against itself, but to have it play against programs that have been programmed to play in the style of the best players. This program has already been improved to the point where it is now unbeatable by any human player. This program is a good example of the way that we can use computer programs to help us do things that we would not be able to do otherwise.The AlphaGo program could help us to do better things in many other ways.&lt;/p&gt;
+
+&lt;p&gt;The program could be used to help us find cures for diseases, and it could be used to help us find better ways to manage the world’s natural resources. The program could be used to help us manage the world’s economies, and it could be used to help us find better ways to manage the world’s political systems. The program could also be used to help us to find better ways to manage the use of the world’s natural resources.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;We can use the program to help us to find better ways to manage the world’s natural resources, and it can help us to find better ways to do many other things.The development of the program has caused people to think about other ways to improve the program.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>ramitsurana</name>
+        
+        
+      </author>
+
+      
+        <category term="[&quot;chess&quot;, &quot;deepmind&quot;, &quot;alphago&quot;]" />
+      
+
+      
+        <category term="deepmind alphago google" />
+      
+
+      
+        <summary type="html">Introducing AlphaGo</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

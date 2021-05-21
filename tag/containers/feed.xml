@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="/tag/containers/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/" rel="alternate" type="text/html" />
+  <updated>2021-05-21T08:27:10+00:00</updated>
+  <id>/tag/containers/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">Ramit Surana | </title>
+  
+
+  
+    <subtitle>Ramit Surana Personal Blog</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Containers in Production</title>
+      <link href="/containers-production" rel="alternate" type="text/html" title="Containers in Production" />
+      <published>2017-08-24T00:00:00+00:00</published>
+      <updated>2017-08-24T00:00:00+00:00</updated>
+      <id>/containers-production</id>
+      <content type="html" xml:base="/containers-production">&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#tips-and-tricks&quot;&gt;Tips and Tricks&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#infrastructure-as-a-code&quot;&gt;Infrastructure as a code&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#data-leak-debugging&quot;&gt;Data Leak Debugging&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#smaller-image-better-image&quot;&gt;Smaller Image Better Image&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#container-inside-container&quot;&gt;Container inside Container&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#what-is-openshift&quot;&gt;What is Openshift?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#openshift-architecture&quot;&gt;Openshift Architecture&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#openshift-setup&quot;&gt;Openshift Setup&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#openshift-playground&quot;&gt;Openshift Playground&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#conclusion&quot;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Hello World ! Today our industry is surrounded by Containers.Every other company wants to build something on top of the containers.The containers have taken a rapid replacement with virtualization.There are several initiatives that are being taken by new age startups and guys who are enthusiastic about the idea.&lt;/p&gt;
+
+&lt;p&gt;So,in this rather small yet interesting blog post I plan to uncover some tips and tricks that people in the container industry are using to make sure they stay ahead of the new age revolution.Also in the later part of this tutorial we are going to see a really cool way to deploy docker containers in production.So let’s get started :&lt;/p&gt;
+
+&lt;h2 id=&quot;tips-and-tricks&quot;&gt;Tips and Tricks&lt;/h2&gt;
+
+&lt;h3 id=&quot;infrastructure-as-a-code&quot;&gt;Infrastructure as a code&lt;/h3&gt;
+
+&lt;p&gt;Imagine setting up a hundred microservices that we want to run and each having it’s own requirements.What would be the time taken for such a deployment ? Days,months.In order to prevent such time loss &amp;amp; complexity we have the concept of Infrastructure as a Code.The idea is to build and setup one template using which we can easily create large variety of services.For this purpose we can use some of the tools such as &lt;a href=&quot;http://terraform.io/&quot;&gt;Terraform&lt;/a&gt;, &lt;a href=&quot;https://aws.amazon.com/cloudformation/&quot;&gt;CloudFormation&lt;/a&gt; etc.&lt;/p&gt;
+
+&lt;h3 id=&quot;data-leak-debugging&quot;&gt;Data Leak Debugging&lt;/h3&gt;
+
+&lt;p&gt;Yikes ! Containers leak ! But the real question is how can you check it out ? Simple let’s debug our docker container.But, How to do that ? Using the docker exec command.Actually the docker exec command is inspired by a project called as &lt;a href=&quot;https://github.com/jpetazzo/nsenter&quot;&gt;nsenter&lt;/a&gt;.It is basically done via running a shell inside your docker container.&lt;/p&gt;
+
+&lt;h3 id=&quot;smaller-image-better-image&quot;&gt;Smaller Image Better Image&lt;/h3&gt;
+
+&lt;p&gt;Minimizing the size of your docker images is a challenging task in production.Using some tools and techniques we can minimize the docker image from dockerfile.For this purpose we can use &lt;a href=&quot;https://github.com/projectatomic/dockerfile_lint&quot;&gt;Docker lint&lt;/a&gt; tool by Project atomic.&lt;/p&gt;
+
+&lt;h3 id=&quot;container-inside-container&quot;&gt;Container inside Container&lt;/h3&gt;
+
+&lt;p&gt;Have you ever thought,can a container be run inside another container ? One of these thoughts have been explored in the past.The results were optimistic and some limitations were observed.You can check out more info at &lt;a href=&quot;https://github.com/jpetazzo/dind&quot;&gt;Dind(Docker-in-Docker)&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;That’s it folks on the tips and tricks section.Let’s explore one amazing tool that many companies plan to or have started to use in production.Yes you are guessing it right ! I am talking about openshift.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-openshift&quot;&gt;What is Openshift?&lt;/h2&gt;
+
+&lt;p&gt;In simple words openshift is a PaaS based platform which companies have been using in production.The project is maintained and started by the RedHat folks.In the new version of openshift we can see that the project has now become a part of the kubernetes project.Starting its version 3,openshift now deploys its services in containers.&lt;/p&gt;
+
+&lt;h2 id=&quot;openshift-architecture&quot;&gt;Openshift Architecture&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/29638409-d3ebd124-8874-11e7-9596-ed5411422371.png&quot; alt=&quot;arch-diagram&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;@ Copyright Openshift by RedHat&lt;/p&gt;
+
+&lt;h2 id=&quot;openshift-setup&quot;&gt;Openshift Setup&lt;/h2&gt;
+
+&lt;p&gt;Openshift can be easily installed and run using several different ways.For my own usage I use minishift.It is an all in one vm which you can use on your local machine.Another way to do it is run it on a docker container by using the below command:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Can be run only on a RedHat Distribution based Operating System
+$ sudo docker run -d --name &quot;origin&quot; \
+        --privileged --pid=host --net=host \
+        -v /:/rootfs:ro -v /var/run:/var/run:rw -v /sys:/sys -v /var/lib/docker:/var/lib/docker:rw \
+        -v /var/lib/origin/openshift.local.volumes:/var/lib/origin/openshift.local.volumes:rslave \ 
+        openshift/origin start
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The last and the most recommended way to use openshift is to install it manually using the installation instructions as given on its project &lt;a href=&quot;https://github.com/openshift/origin&quot;&gt;site&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;openshift-playground&quot;&gt;Openshift Playground&lt;/h2&gt;
+
+&lt;p&gt;You can check out some of the cool features of openshift such as Console, CLI etc. The web UI is available at 192.168.99.100:8443.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/29638575-433f77ba-8875-11e7-9c33-8c9d40686f39.png&quot; alt=&quot;open1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The default user is admin and the password is admin for the same.Click on the New Project button in order to create a new project.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/29638619-6bcfeeb2-8875-11e7-8f82-3cab8ce7bca9.png&quot; alt=&quot;open2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Choose the name of the project that you wish to continue with.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/29638669-8a2bdf7e-8875-11e7-8342-4a5a5862391f.png&quot; alt=&quot;open3&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see that you have 3 options using which we can easily build an up and running docker container app.The first option includes using some common languages for building your application.The second option includes a docker image which can be pulled from dockerhub.The third option includes using an JSON/YAML file.For this quick demo I am going to choose the first option.&lt;/p&gt;
+
+&lt;p&gt;You can quickly search nodejs in the search bar and select it as your base.Please select the first option and click on the Select button.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/29638695-a979f23a-8875-11e7-9679-48834ab95179.png&quot; alt=&quot;open4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here I am going to use the sample code present at &lt;a href=&quot;https://github.com/openshift/nodejs-ex&quot;&gt;https://github.com/openshift/nodejs-ex&lt;/a&gt; .It is a sample nodejs based app that is provided by the Openshift Guys.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/29638750-e1c0a12a-8875-11e7-8c36-a4baa330bfa7.png&quot; alt=&quot;open5&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When you are done,you can proceed to the create button present at the bottom of the page.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/29638822-1d0dcfe6-8876-11e7-84df-a96dcff1093b.png&quot; alt=&quot;open6&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Voila ! You have created your first app.It is now deployed in a container which is present in a newly created pod.Awesome ! Let’s check it out using the Continue to Overview link present at the top of the page.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/29638869-42ca11a4-8876-11e7-818d-e6147df0fd92.png&quot; alt=&quot;open7&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see above the pod has been created and a container inside it is now running our chosen application code.We can check the app UI via its URL present at the top right corner of the page.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/29638895-66d27ad2-8876-11e7-9885-5349c15ecc3e.png&quot; alt=&quot;open8&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;The conclusion is simple.The world has been never been simpler &amp;amp; fun.With containers at our service we are now deploying faster scalable infrastructure applications for masses.In the end,I hope you enjoyed reading the post :)&lt;/p&gt;
+
+&lt;p&gt;If you are interested in books, do make sure to buy some of these books from links down below. I am sure you will find them useful.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>ramitsurana</name>
+        
+        
+      </author>
+
+      
+        <category term="[&quot;openshift&quot;]" />
+      
+
+      
+        <category term="containers" />
+      
+        <category term="tips" />
+      
+        <category term="openshift" />
+      
+
+      
+        <summary type="html">Containers usage tips and tricks.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Introducing Turbo for Docker</title>
+      <link href="/introducing-turbo-for-docker" rel="alternate" type="text/html" title="Introducing Turbo for Docker" />
+      <published>2016-09-01T00:00:00+00:00</published>
+      <updated>2016-09-01T00:00:00+00:00</updated>
+      <id>/introducing-turbo-for-docker</id>
+      <content type="html" xml:base="/introducing-turbo-for-docker">&lt;p&gt;Minasan, kon’nichiwa (Japense)(In English - Hello Friends). Hope you folks are having an awesome day at work ! For the past sometime I have been learning and exploring golang.It is an awesome language becoming popular like python and java.Following the reason to implement golang in some of my project’s.I started to implement golang and try golang in the most efficient manner as possible.This year I decided to start this project following my process of learning.As much like as every developer I Hope you find them useful and worth contributing.&lt;/p&gt;
+
+&lt;h2 id=&quot;turbo&quot;&gt;Turbo&lt;/h2&gt;
+
+&lt;p&gt;One of the most popular container projects in the market is &lt;a href=&quot;http://docker.com&quot;&gt;Docker&lt;/a&gt;.It has been in the market for very less no. of years.But has gained popularity like nothing else in the market.Since the introduction of &lt;a href=&quot;http://docker.com&quot;&gt;Docker&lt;/a&gt; project containers have been continously gaining momentum and recognition than before.With time the current methodologies to build containers have been changing and replacing with time.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://github.com/ramitsurana/turbo&quot;&gt;Turbo&lt;/a&gt; is a simple yet powerfull utility for &lt;a href=&quot;http://docker.com&quot;&gt;Docker&lt;/a&gt;.The main aim for designing &lt;a href=&quot;http://github.com/ramitsurana/turbo&quot;&gt;turbo&lt;/a&gt; main focus is to introduce simplicity,automate the current process to build a flexible enviorment and to make &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt;  usage like never before.&lt;a href=&quot;http://github.com/ramitsurana/turbo&quot;&gt;Turbo&lt;/a&gt; implements simple and regularly used useful commands on a currently installed &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; enviorment.It is written in &lt;a href=&quot;http://golang.org&quot;&gt;golang&lt;/a&gt;.This makes it more compatible with &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt;.It is lightweight in nature which makes it awesome to use and can be deployed wherever you want.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/16713587/95b469bc-46ca-11e6-8fb3-e56c7ce7d19d.png&quot; alt=&quot;turbo1&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;why-turbo-&quot;&gt;Why Turbo ?&lt;/h2&gt;
+
+&lt;p&gt;The real answer to this question is curiosity.I think as a regular docker user myself I wanted to experience some new tools and functionalities with docker.Although I agree,that docker has a beautiful cli that provides almost everything you need to play with containers.But, I guess having everything is never enough.Haha.So I began enjoying adding more options that makes it easy to use and adopt docker in a more useful and interactive manner.Although the journey has just begun.There’s a lot to be done.&lt;/p&gt;
+
+&lt;h2 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h2&gt;
+
+&lt;p&gt;There are multiple ways to started using Turbo.For the normal users,&lt;/p&gt;
+
+&lt;p&gt;Go to &lt;a href=&quot;https://github.com/ramitsurana/turbo/releases&quot;&gt;releases&lt;/a&gt; sections of the turbo’s github repo.
+Install the tar file.
+Untar it.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cp turbo /usr/local/bin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Try it out using&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ turbo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;If everything is correctly done you should get output something like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Turbo:
+  Simple and Powerfull utility for Docker
+
+Usage:
+  Turbo [command]
+
+Available Commands:
+  backup      backups all your docker stuff
+  clean       Cleans up all your docker images
+  destroy     Erases off all the exited containers
+  harbor      installs and configures vmware harbor
+  kickstart   restarts all your containers quickly
+  kube        Installs and configure minikube for your system
+  ldap        Uses to install and configure Openldap
+  log         Uses logspout to collect your docker logs
+  monitor     To monitor your containers
+  proxy       Installs and configure squid3 proxy for your system
+  refresh     Completely removes and re-installs docker
+  replica     To create Replicas of your containers
+  rkt         Installs and configures rkt
+  search      Search images from multiple registries
+  ship        Transfer your docker images over a remote i.p.
+  version     prints the current version number of turbo
+
+Flags:
+      --config string   config file (default is $HOME/.turbo.yaml)
+  -h, --help            help for Turbo
+  -t, --toggle          Help message for toggle
+
+Use &quot;Turbo [command] --help&quot; for more information about a command.
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;For people working on golang,they can start using it via&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ go get -v github.com/ramitsurana/turbo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;using-turbo&quot;&gt;Using Turbo&lt;/h2&gt;
+
+&lt;p&gt;Turbo works on a simple command line based model where you can use the commands built by turbo in a simple and easy to use manner.
+Some of the commands used are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#backup&quot;&gt;Backup&lt;/a&gt; - Backups all your stuff so that you can have a copy in case anything goes wrong.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#clean&quot;&gt;Clean&lt;/a&gt; - Wipes of all your &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; images from your system.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#destroy&quot;&gt;Destroy&lt;/a&gt; - Kills all of your exited containers.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#kickstart&quot;&gt;Kickstart&lt;/a&gt; - Restarts all your containers&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#log&quot;&gt;Log&lt;/a&gt; - Installs and configures logspout on your system&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#monitor&quot;&gt;Monitor&lt;/a&gt; - Helps you monitor your docker containers&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#refresh&quot;&gt;Refresh&lt;/a&gt; - Removes Docker ecosystem and Installs a new one&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#replica&quot;&gt;Replica&lt;/a&gt; - Creates multiple replicas of your docker container&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#rkt&quot;&gt;Rkt&lt;/a&gt; - Installs and configures rkt on your system&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#search&quot;&gt;Search&lt;/a&gt; - Searches Docker registry hub,quay.io for your images&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ship&quot;&gt;Ship&lt;/a&gt; -  Ships off all your Docker Stuff to remote &lt;I.P&gt;&lt;/I.P&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#version&quot;&gt;Version&lt;/a&gt; - Displays Turbo version&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#kube&quot;&gt;kube&lt;/a&gt; - Installs and Configures Minikube on your system&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#harbor&quot;&gt;Harbor&lt;/a&gt; - Installs and configures Harbor on your system&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#proxy&quot;&gt;Proxy&lt;/a&gt; - Installs and configures squid proxy on your system&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#ldap&quot;&gt;Ldap&lt;/a&gt; - Installs and configures Openldap on your system&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;For me building this project has been a fun and awesome experience.Obviously like any other project there are more stuff to do,ensure ease of access and more fun features for users.In the end,I hope you enjoyed this post and you give it a shot.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>ramitsurana</name>
+        
+        
+      </author>
+
+      
+        <category term="[&quot;docker&quot;, &quot;containers&quot;]" />
+      
+
+      
+        <category term="docker" />
+      
+        <category term="cloud" />
+      
+        <category term="containers" />
+      
+
+      
+        <summary type="html">Creating Turbo for use with Docker</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

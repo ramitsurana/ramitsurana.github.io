@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> - Articles</title>
+    <description>Ramit Surana Personal Blog</description>
+    <link>
+    </link>
+    
+      
+      <item>
+        <title>I tried out GPT3, Here is what I did - Part 1</title>
+        
+          <description>Analysis and Observations on GPT3</description>
+        
+        <pubDate>Tue, 04 May 2021 00:00:00 +0000</pubDate>
+        <link>
+        /gpt3-part-1</link>
+        <guid isPermaLink="true">/gpt3-part-1</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Understanding Protein Folding</title>
+        
+          <description>How Protein Folding Works?</description>
+        
+        <pubDate>Mon, 12 Apr 2021 00:00:00 +0000</pubDate>
+        <link>
+        /protein-folding</link>
+        <guid isPermaLink="true">/protein-folding</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>AlphaGo by Deepmind</title>
+        
+          <description>Introducing AlphaGo</description>
+        
+        <pubDate>Mon, 12 Apr 2021 00:00:00 +0000</pubDate>
+        <link>
+        /alphago</link>
+        <guid isPermaLink="true">/alphago</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Why storing non-sensitive parameters in a DB might ease your production deployments?</title>
+        
+          <description>Storing non-sensitive parameters in Dynamodb</description>
+        
+        <pubDate>Wed, 22 Jan 2020 00:00:00 +0000</pubDate>
+        <link>
+        /storing-non-sensitive-parameters-in-db</link>
+        <guid isPermaLink="true">/storing-non-sensitive-parameters-in-db</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Automating your CI/CD with Chef Automate &amp; Habitat</title>
+        
+          <description>Using Chef Tools to automate your CI/CD Journey</description>
+        
+        <pubDate>Sun, 14 Jan 2018 00:00:00 +0000</pubDate>
+        <link>
+        /ci-cd-chef-automate</link>
+        <guid isPermaLink="true">/ci-cd-chef-automate</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Containers in Production</title>
+        
+          <description>Containers usage tips and tricks.</description>
+        
+        <pubDate>Thu, 24 Aug 2017 00:00:00 +0000</pubDate>
+        <link>
+        /containers-production</link>
+        <guid isPermaLink="true">/containers-production</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Using P2P networking for digital banking transactions</title>
+        
+          <description>Building modern day digital transaction systems</description>
+        
+        <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
+        <link>
+        /banking-world</link>
+        <guid isPermaLink="true">/banking-world</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>The 6 paradigms of software architectures</title>
+        
+          <description>Exploring different types of enterprise class software architectures</description>
+        
+        <pubDate>Fri, 30 Dec 2016 00:00:00 +0000</pubDate>
+        <link>
+        /the-6-paradigms-of-software-architectures</link>
+        <guid isPermaLink="true">/the-6-paradigms-of-software-architectures</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Introducing Turbo for Docker</title>
+        
+          <description>Creating Turbo for use with Docker</description>
+        
+        <pubDate>Thu, 01 Sep 2016 00:00:00 +0000</pubDate>
+        <link>
+        /introducing-turbo-for-docker</link>
+        <guid isPermaLink="true">/introducing-turbo-for-docker</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Achieving CI/CD with Kubernetes</title>
+        
+          <description>Building CI/CD pipeline with kubernetes</description>
+        
+        <pubDate>Mon, 01 Aug 2016 00:00:00 +0000</pubDate>
+        <link>
+        /achieving-ci-cd-with-kubernetes</link>
+        <guid isPermaLink="true">/achieving-ci-cd-with-kubernetes</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Playing with rkt and appc</title>
+        
+          <description>&lt;p&gt;Evolution is an ongoing process. In the containers spectrum it has been a regular custom to experiment with new stuff and make it better with time. Saying so one of the coolest evolving projects is the &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; project by &lt;a href=&quot;http://coreos.com&quot;&gt;Coreos&lt;/a&gt; guys. It is a substitute of the famous &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; container project and uses different methodology than the &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; project. So, I began exploring and found out that its a really interesting approach on building containers.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 09 Jul 2016 00:00:00 +0000</pubDate>
+        <link>
+        /playing-with-rkt-and-appc</link>
+        <guid isPermaLink="true">/playing-with-rkt-and-appc</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Slack + Trello: An amazing combination</title>
+        
+          <description>Communication and management done effectively.</description>
+        
+        <pubDate>Thu, 07 Jan 2016 00:00:00 +0000</pubDate>
+        <link>
+        /slack+trello</link>
+        <guid isPermaLink="true">/slack+trello</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>The genisis of Kubernetes</title>
+        
+          <description>A brief study on Kubernetes and its components</description>
+        
+        <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+        <link>
+        /genisis-kubernetes</link>
+        <guid isPermaLink="true">/genisis-kubernetes</guid>
+      </item>
+      
+    
+  </channel>
+</rss>

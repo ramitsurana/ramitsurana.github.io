@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="/tag/docker-orchestration-automation-devops-kubernetes/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/" rel="alternate" type="text/html" />
+  <updated>2021-05-21T08:27:10+00:00</updated>
+  <id>/tag/docker-orchestration-automation-devops-kubernetes/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">Ramit Surana | </title>
+  
+
+  
+    <subtitle>Ramit Surana Personal Blog</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">The genisis of Kubernetes</title>
+      <link href="/genisis-kubernetes" rel="alternate" type="text/html" title="The genisis of Kubernetes" />
+      <published>2016-01-01T00:00:00+00:00</published>
+      <updated>2016-01-01T00:00:00+00:00</updated>
+      <id>/genisis-kubernetes</id>
+      <content type="html" xml:base="/genisis-kubernetes">&lt;p&gt;Although Docker has made quite a reputation,
+in introducing containers as a proper solution for big and small companies in today’s competitive scenario, there are many companies
+that mastered the art of running scalable, production workloads in containers.Google,which is one of those popular names,
+deals with more than two billion containers per week have been dealing and using containers for over a decade and has introduced
+one of its brilliant products &lt;a href=&quot;https://www.kubernetes.io/&quot;&gt;Kubernetes&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-kubernetes-&quot;&gt;What is Kubernetes ?&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.kubernetes.io/&quot;&gt;Kubernetes&lt;/a&gt; is an open source orchestration system for Docker containers.
+It handles scheduling onto nodes in a compute cluster and actively manages workloads to ensure that
+their state matches the users declared intentions. Using the concepts of “labels” and “pods”,
+it groups the containers which make up an application into logical units for easy management and discovery.&lt;/p&gt;
+
+&lt;h2 id=&quot;basic-terminologies-about-kubernetes-&quot;&gt;Basic Terminologies about Kubernetes :&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;Pods&lt;/em&gt;:
+The smallest deployable units that can be created, scheduled, and managed. Its a logical collection of containers that belong to an application.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;Master&lt;/em&gt;:
+The central control point that provides a unified view of the cluster. There is a single master node that
+control multiple minions.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;Minion&lt;/em&gt;:
+The worker node that run tasks as delegated by the master. Minions can run one or more pods.
+It provides an application-specific “virtual host” in a containerized environment.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;Selector&lt;/em&gt;:
+It is a query against labels, producing a set of result.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;Controller&lt;/em&gt;:
+A reconciliation loop that drives current state towards desired state.​&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;Service&lt;/em&gt;:
+It is a set of pods that work together.​&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;architecture&quot;&gt;Architecture:&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/10783468/159283b0-7d7e-11e5-8e90-f9907b423e04.png&quot; alt=&quot;kubernetes-key-concepts&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;kubelet&quot;&gt;Kubelet:&lt;/h2&gt;
+
+&lt;p&gt;It is the primary “node agent” that runs on each node.
+The kubelet works in terms of a PodSpec.(PodSpec is a YAML or JSON object that describes a pod​).
+It takes a set of PodSpecs that are provided through various mechanisms and ensures that the containers described
+in those PodSpecs are running and healthy.Other than from an PodSpec from the apiserver, there are three ways that
+a container manifest can be provided to the Kubelet :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;File&lt;/em&gt;:
+Path passed as a flag on the command line. This file is rechecked every 20 seconds (configurable with a flag).​&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;HTTP endpoint&lt;/em&gt;:
+HTTP endpoint passed as a parameter on the command line. This endpoint is checked every 20 seconds​-&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;HTTP server&lt;/em&gt;:
+The kubelet can also listen for HTTP and respond to a simple API (underspecd currently) to submit a new manifest.​&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;kubernetes-cluster&quot;&gt;Kubernetes Cluster:&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/10783557/a835bc8c-7d7e-11e5-88d1-4b065e63ca7d.jpg&quot; alt=&quot;microservices-containers-docker-bangalore-meetup-12-13-638&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;etcd&quot;&gt;Etcd:&lt;/h2&gt;
+
+&lt;p&gt;Etcd is a distributed consistent key-value store for shared configuration and service discovery.
+It is by default built in for kubernetes.​All cluster data is stored here in etcd.​&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/10783604/fec41ad0-7d7e-11e5-98de-02974c755796.png&quot; alt=&quot;etcd&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;services&quot;&gt;Services:&lt;/h2&gt;
+
+&lt;p&gt;It is abstraction which defines a logical set of Pods and a policy by which to access them -
+sometimes called as micro-service.Each service is given its own IP address and port which remains
+constant for the lifetime of the service. So to access the service from inside your application or
+container you just nedd to bind to the IP address and port number for the service.A service, through its
+label selector, can resolve two or more pods. Over the life of a service, the set of pods which
+comprise that service can grow, shrink, or turn over completely.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/10783651/59df8076-7d7f-11e5-9dd9-5bf19dcdf48f.png&quot; alt=&quot;services-overview&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;namespaces&quot;&gt;NameSpaces:&lt;/h2&gt;
+
+&lt;p&gt;It enable you to manage different environments within the same cluster.
+It is the abstraction which defines a logical set of Pods and a policy by which to access them -
+sometimes called a micro-service.You can also run different types of server, batch, or other
+jobs in the same cluster without worrying about them affecting each other.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/10783678/87a37530-7d7f-11e5-840f-d5497c484ca2.png&quot; alt=&quot;lxc_architecture&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;flannel&quot;&gt;Flannel:&lt;/h2&gt;
+
+&lt;p&gt;It was formerly known as Rudder.​Flannel is etcd backed network fabric for containers.
+It uses etcd to store the network configuration, allocated subnets, and auxiliary data (such as host’s IP).
+The simplest backend of flannel is udp which uses a TUN device to encapsulate every IP fragment in a UDP packet.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/10783726/c9a8a752-7d7f-11e5-8e8d-9c7760149168.png&quot; alt=&quot;flannel&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;replication-controller&quot;&gt;Replication Controller:&lt;/h2&gt;
+
+&lt;p&gt;It ensures that a specified number of pod “replicas” are running at any one time.
+If there are too many, the replication controller kills some pods. If there are too few,
+it starts more pods.The pod Template creates new pods from a template.The labels work is to remove
+the pod from a replication controller’s target set,to change the pod’s label.Also,deleting a replication
+controller does not affect the pods it created.&lt;/p&gt;
+
+&lt;h2 id=&quot;replication-controller-architecure&quot;&gt;Replication Controller Architecure:&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/10783809/5f95e8b0-7d80-11e5-93b3-2aab631909f4.png&quot; alt=&quot;replication-controller&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;volumes&quot;&gt;Volumes:&lt;/h2&gt;
+
+&lt;p&gt;The Volume is just a directory, possibly with some data in it, which is accessible to the containers in a pod.
+It cannot mount onto other volumes or have hard links to other volumes.Each container in the Pod
+must independently specify where to mount each volume.Kubernetes also supports several types of Volumes,such as :
+Empty Dir,host Path,gce Persistent Disk,aws Elastic Block Store,nfs,iscsi,glusterfs,rbd,gitRepo,
+secret,persistent Volume Claim etc.&lt;/p&gt;
+
+&lt;p&gt;It is composed of multiple libraries, which are designed to work together, or
+can be used independently with other testing tools like Cucumber or Minitest.
+The parts of RSpec are:​&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;rspec-core:&lt;/em&gt;
+The spec runner, providing a rich command line program, flexible and customizable reporting,
+and an API to organize your code examples.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;rspec-expectations:&lt;/em&gt;
+Provides a readable API to express expected outcomes of a code example.  ​&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;rspec-mocks:&lt;/em&gt;
+Test double framework, providing multiple types of fake objects to allow you
+to tightly control the environment in which your specs run.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;rspec-rails:&lt;/em&gt;
+Supports using RSpec to test Ruby on Rails applications in place of Rails’ built-in test framework.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/10783904/04b25f4a-7d81-11e5-9d66-8c6b08db1c23.png&quot; alt=&quot;kube-gluster&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;monitoring-using-cadvisor&quot;&gt;Monitoring using CAdvisor:&lt;/h2&gt;
+
+&lt;p&gt;cAdvisor is short for Container Advisor.Heapster is a cluster-wide aggregator of monitoring and event data.
+Kubelet itself fetches the data from cAdvisor.It is an open source container resource usage and performance analysis agent.
+Kubelet manages the pods and containers running on a machine.​&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/10841839/c23074b6-7f12-11e5-883c-40bc51598a8a.png&quot; alt=&quot;cadvisor_logo_padded&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;monitoring-architecture&quot;&gt;Monitoring Architecture:&lt;/h2&gt;
+
+&lt;p&gt;The monitoring architecture of &lt;a href=&quot;https://www.kubernetes.io/&quot;&gt;kubernetes&lt;/a&gt; look like:
+&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/10784135/58e3a424-7d82-11e5-8753-388253ab1bd7.png&quot; alt=&quot;monitoring-architecture&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;labels-and-selectors&quot;&gt;Labels and Selectors:&lt;/h2&gt;
+
+&lt;p&gt;Labels are the key/value pairs that are attached to objects, such as pods.
+Labels are intended to be used to specify identifying attributes of objects that are meaningful and
+relevant to users.Using label selector, the client/user can identify a set of objects. The label selector
+is the core grouping primitive in Kubernetes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/10784176/a3783e82-7d82-11e5-8ba2-d0a7ddea2159.jpg&quot; alt=&quot;kubernetes-label&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For more reference on this topic,my slides can be found at &lt;a href=&quot;http://www.slideshare.net/ramitsurana/a-brief-study-on-kubernetes-and-its-components&quot;&gt;slideshare&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Hope this helps! Keep forking.&lt;/strong&gt;&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>ramitsurana</name>
+        
+        
+      </author>
+
+      
+        <category term="[&quot;orchestration&quot;, &quot;docker&quot;, &quot;google&quot;, &quot;etcd&quot;, &quot;coreos&quot;]" />
+      
+
+      
+        <category term="docker orchestration automation devops kubernetes" />
+      
+
+      
+        <summary type="html">A brief study on Kubernetes and its components</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

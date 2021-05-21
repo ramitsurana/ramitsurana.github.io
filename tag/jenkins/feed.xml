@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="/tag/jenkins/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/" rel="alternate" type="text/html" />
+  <updated>2021-05-21T08:27:10+00:00</updated>
+  <id>/tag/jenkins/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">Ramit Surana | </title>
+  
+
+  
+    <subtitle>Ramit Surana Personal Blog</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Why storing non-sensitive parameters in a DB might ease your production deployments?</title>
+      <link href="/storing-non-sensitive-parameters-in-db" rel="alternate" type="text/html" title="Why storing non-sensitive parameters in a DB might ease your production deployments?" />
+      <published>2020-01-22T00:00:00+00:00</published>
+      <updated>2020-01-22T00:00:00+00:00</updated>
+      <id>/storing-non-sensitive-parameters-in-db</id>
+      <content type="html" xml:base="/storing-non-sensitive-parameters-in-db">&lt;p&gt;Do you have a huge infrastructure and you are tired of managing releases or fixing hotfixes every once in a while? In one of my past projects, I had this similar issue where maintenance and regular updates to production were becoming hard to follow up and releases took hours if not minutes to prepare and execute. As our features and requirements increase the complexity of the project also increased.&lt;/p&gt;
+
+&lt;h3 id=&quot;solution&quot;&gt;Solution&lt;/h3&gt;
+
+&lt;p&gt;While building on one of my solutions, where we typically use Dynamodb for storing information. I  had the idea of using a central location (in our case, dynamodb) to read all the parameter related values. To give a bit of overview of our architecture, we had 3 primary AWS accounts (Dev, Control and Prod) and multiple customer accounts (100+ AWS accounts) linked together working in an orchestration. After using the dynamodb, we ended up using it something like below -&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/storing-params/dynamodb-storing-values.png&quot; alt=&quot;dynmodb-solution&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;sample-dynamodb-schema&quot;&gt;Sample Dynamodb Schema&lt;/h3&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;dev&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;account_number&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;123456789&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;assume_role&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;xxxxxx&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;admin_email&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;xxxxxxxx&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;region&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;us-east-1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;pipelines&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+       &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;instance_size&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;t2.micro&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; 
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;qa&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;account_number&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;123456789&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;assume_role&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;xxxxxx&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;admin_email&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;xxxxxxxx&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;region&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;us-east-1&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;prod&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;account_number&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;123456789&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;assume_role&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;xxxxxx&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;admin_email&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;xxxxxxxx&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;region&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;us-east-1&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Netflix&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;using-terraform&quot;&gt;Using Terraform&lt;/h3&gt;
+
+&lt;p&gt;In terraform, we had approx 90+ variables to work with, changing values for every release for even a few variables was cumbersome and time-consuming. So I ended up, changing the way how we declared and update the variables under variables.tf. Instead of declaring the values in variables terraform file, I started generating the terraform tfvars.json file at run time using some python code and passing the JSON file using the -var-file subcommand at the time of terraform plan or apply. Example -&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;terraform plan -var-file=&quot;sample.tfvars.json&quot;
+terraform apply -var-file=&quot;sample.tfvars.json&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In the python code, I ended up calling the dynamodb table parameter values using boto3 in order to update the values of the variables. This gave me an added benefit to update the dynamodb values and execute the terraform code without doing any code changes.&lt;/p&gt;
+
+&lt;h3 id=&quot;using-serverless-framework&quot;&gt;Using Serverless Framework&lt;/h3&gt;
+
+&lt;p&gt;Under our serverless framework usage, we had distributed the workflow into several different microservices. These microservices had different parameter values declared in different YAML files under individual services. Similar to terraform, using simple boto3 and dynamodb I ended up generating the YAML file along with relevant values for individual microservices. Only the default values for each microservices were kept at the codebase.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Using simple techniques and solutions like the ones I have shared above helped me to reduce my time for managing infrastructure and deployments and focus more on the feature development and building solutions from an end to end perspective. In following the above approach however there is one caveat, &lt;strong&gt;you need to log the changes made and ensure proper access permissions for the Dynamodb updates in the table.&lt;/strong&gt; Also, please ensure only read access to the resources using the dynamodb. In the end, I hope that this post would have helped you. Thanks for reading!&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>ramitsurana</name>
+        
+        
+      </author>
+
+      
+        <category term="[&quot;Dynamodb&quot;, &quot;Terraform&quot;, &quot;Jenkins&quot;]" />
+      
+
+      
+        <category term="Dynamodb" />
+      
+        <category term="Terraform" />
+      
+        <category term="Jenkins" />
+      
+
+      
+        <summary type="html">Storing non-sensitive parameters in Dynamodb</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Automating your CI/CD with Chef Automate &amp;amp; Habitat</title>
+      <link href="/ci-cd-chef-automate" rel="alternate" type="text/html" title="Automating your CI/CD with Chef Automate &amp; Habitat" />
+      <published>2018-01-14T00:00:00+00:00</published>
+      <updated>2018-01-14T00:00:00+00:00</updated>
+      <id>/ci-cd-chef-automate</id>
+      <content type="html" xml:base="/ci-cd-chef-automate">&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#habitat&quot;&gt;Habitat&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#introduction-to-habitat&quot;&gt;Introduction to Habitat&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#habitat-architecture&quot;&gt;Habitat Architecture&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#habitat-builder&quot;&gt;Habitat Builder&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#habitat-studio&quot;&gt;Habitat Studio&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#docker-vs-habitat&quot;&gt;Docker Vs Habitat&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#chef-automate&quot;&gt;Chef Automate&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#introduction-to-chef-automate&quot;&gt;Introduction to Chef Automate&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#trying-out-on-local-system&quot;&gt;Trying Out on Local System&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#chef-automate-setup-on-aws-ec2&quot;&gt;Chef Automate Setup on AWS EC2&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#prerequisites&quot;&gt;Prerequisites&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#setup&quot;&gt;Setup&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#chef-automate-internals&quot;&gt;Chef Automate Internals&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tips-and-tricks-on-ci-cd&quot;&gt;Tips &amp;amp; Tricks on CI/CD&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#conclusion&quot;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Hallo Freunde (German)(Hello Friends),As &lt;a href=&quot;http://martinfowler.com&quot;&gt;Martin Fowler&lt;/a&gt; correctly explains continous delivery:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Continuous Delivery is a software development discipline where you build software in such a way that the software can be released to production at any time.The primary goal of the process is to be production ready anytime and anywhere.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In this simple and amazing piece of article we are going to discuss and explore some new amazing and rather interesting pieces technology.One i.e. Habitat,an Automation tool that Automates your process to build and publish Docker Images and Second i.e. Automate, which is a new chef CI/CD tool with a cool new dashboard &amp;amp; better features.As an added bonus I am  also going to share some nice tips that I use to make my life easier while handling the CI/CD pipelines.So let’s get started,&lt;/p&gt;
+
+&lt;h2 id=&quot;habitat&quot;&gt;Habitat&lt;/h2&gt;
+
+&lt;h3 id=&quot;introduction-to-habitat&quot;&gt;Introduction to Habitat&lt;/h3&gt;
+
+&lt;p&gt;Habitat is a new amazing tool introduced by Chef.It basically tries to serve one motive i.e. to automate the process of making a container image as easily as possible.You can think of it as &lt;strong&gt;Dockerfile&lt;/strong&gt; for the docker except that it has some new features for building images and process to publish it in CI/CD perspective. The tool has been introduced in 2016 &amp;amp; is still into development phase. It is written in rust and reactive by nature. Now let’s do some installation:&lt;/p&gt;
+
+&lt;p&gt;First, visit https://github.com/habitat-sh/habitat#install :&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ curl https://raw.githubusercontent.com/habitat-sh/habitat/master/components/hab/install.sh | sudo bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After the installation, try running it on the command line using the below command:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ hab
+hab 0.51.0/20171219021329
+
+Authors: The Habitat Maintainers &amp;lt;humans@habitat.sh&amp;gt;
+&quot;A Habitat is the natural environment for your services&quot; - Alan Turing
+
+USAGE:
+    hab [SUBCOMMAND]
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+SUBCOMMANDS:
+    bldr      Commands relating to Habitat Builder
+    cli       Commands relating to Habitat runtime config
+    config    Commands relating to Habitat runtime config
+    file      Commands relating to Habitat files
+    help      Prints this message or the help of the given subcommand(s)
+    origin    Commands relating to Habitat origin keys
+    pkg       Commands relating to Habitat packages
+    plan      Commands relating to plans and other app-specific configuration.
+    ring      Commands relating to Habitat rings
+    studio    Commands relating to Habitat Studios
+    sup       Commands relating to the Habitat Supervisor
+    svc       Commands relating to Habitat services
+    user      Commands relating to Habitat users
+
+
+ALIASES:
+    apply      Alias for: 'config apply'
+    install    Alias for: 'pkg install'
+    run        Alias for: 'sup run'
+    setup      Alias for: 'cli setup'
+    start      Alias for: 'svc start'
+    stop       Alias for: 'svc stop'
+    term       Alias for: 'sup term'
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you receive the above output, then you have successfully installed habitat.&lt;/p&gt;
+
+&lt;h3 id=&quot;habitat-architecture&quot;&gt;Habitat Architecture&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34907583-145ce07a-f8a7-11e7-9c73-8f020a1cb739.png&quot; alt=&quot;chef-habitat&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now upon closely looking at its architecture and how to write it. You can clearly observe the various files one has to write in order to bring up the container/image. The main file in this section is the &lt;strong&gt;plan.sh&lt;/strong&gt; file which is responsible for the deployment strategy/dependencies/package name of the habitat image. It is mandatory to make this file and configure it properly in order to achieve the best results.&lt;/p&gt;
+
+&lt;p&gt;Next, is the &lt;strong&gt;default.toml&lt;/strong&gt; file. This file contains the information about the ports and external configurations of your application that you have. It is similar to having &lt;strong&gt;nginx.conf&lt;/strong&gt; for &lt;strong&gt;nginx&lt;/strong&gt; or &lt;strong&gt;apache2conf&lt;/strong&gt; for &lt;strong&gt;apache&lt;/strong&gt;, which I believe is an interesting and good idea.&lt;/p&gt;
+
+&lt;p&gt;For the hooks part, I observed its usage while exploring some of the samples provided by habitat team in there docs.In simple terms, it is basically breaking down your requirements as per your application into multiple stages each having its priority in different order while running your application. Like we have &lt;strong&gt;Entrypoint&lt;/strong&gt; in &lt;strong&gt;Dockerfile&lt;/strong&gt;. For example, Here the file &lt;strong&gt;Init&lt;/strong&gt; in scripts contains your initialization commands.&lt;/p&gt;
+
+&lt;p&gt;Some sample examples:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/ramitsurana/96e38aab74ea5529f89d02bbd8822493.js&quot;&gt;&lt;/script&gt;
+
+&lt;h3 id=&quot;habitat-builder&quot;&gt;Habitat Builder&lt;/h3&gt;
+
+&lt;p&gt;The Habitat Builder is a place similar to Docker Hub/Quay.io. It is a place where you can automatically check in you code with habitat and build a variety of different container images. It also enables you to publish your docker images on docker hub by connecting your docker hub account.To get started sign up at &lt;a href=&quot;https://bldr.habitat.sh&quot;&gt;Habitat Builder&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34906971-4004eb8c-f89d-11e7-8241-4761a59d8563.png&quot; alt=&quot;habitat1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The term origin here can be defined as a namespace which is created by the user/organization to build one’s own packages. It is similar to defining your name in the dockerhub account.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34907004-c936141c-f89d-11e7-88fe-85277ac813a0.png&quot; alt=&quot;habitat2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can observe from above Habitat asks you to connect your GitHub account and specify the path to which your plan.sh file is placed. It has a by default path under the habitat folder in which it searches your plan.sh file. You can specify your path and use the dockerhub integration if you wish to publish your images to dockerhub.&lt;/p&gt;
+
+&lt;p&gt;Similar to DockerHub, you can also connect your ECR Registry on your AWS account by visiting the Integrations section.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34907040-5400acba-f89e-11e7-9269-0ad62b71a6b5.png&quot; alt=&quot;habitat3&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After creating a package/build you can observe the dependencies by scrolling down the page:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34907085-34168d74-f89f-11e7-8c75-e5f7e7cc22be.png&quot; alt=&quot;habitat4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here you can observe that it consists of 2 sections, labelled as Transitive dependencies and Dependencies.In simple terms, the transitive dependencies can be labelled as a basic set of packages that are required by every application that you wish to build using docker. These are provisioned and managed by the Habitat Team. You can also treat it similar to the &lt;strong&gt;FROM&lt;/strong&gt; Section when writing a Dockerfile.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, Dependencies label is used to signify the extra packages you are using/mentioned in your &lt;strong&gt;plan.sh&lt;/strong&gt; file being used by your application.&lt;/p&gt;
+
+&lt;h3 id=&quot;habitat-studio&quot;&gt;Habitat Studio&lt;/h3&gt;
+
+&lt;p&gt;Habitat Studio is a another important feature of Habitat that allows you to test and run you application in simulation to like a real enviornment before you publish it. If you are familiar with python, you can think it as similar as &lt;a href=&quot;https://virtualenv.pypa.io/en/stable/&quot;&gt;virtualenv&lt;/a&gt;. So let’s try out hab studio.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ hab studio setup
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34915287-a6e4174a-f949-11e7-8f62-e804f2756859.png&quot; alt=&quot;habitat5&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the setup default origin, choose your name for origin. In my case I am taking it as &lt;strong&gt;ramitsurana&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34915299-d07925d2-f949-11e7-8ebb-104744fc4795.png&quot; alt=&quot;habitat6&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34915319-5787f03a-f94a-11e7-955e-bd8050449202.png&quot; alt=&quot;habitat7&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In order to achieve our objective we are going to use this github feature&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34915325-70bca69a-f94a-11e7-9298-c0dc927471e0.png&quot; alt=&quot;habitat8&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In case you are wondering how to create a new access Github token, please open the following &lt;a href=&quot;https://github.com/settings/tokens&quot;&gt;url&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34915423-6f297f68-f94c-11e7-9bd7-74c6b893bb6c.png&quot; alt=&quot;github-access-token&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Copy the generated token in the cli tool for hab &amp;amp; you are good to go.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Do make sure to save this token. We will use it in the next part of the article.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;docker-vs-habitat&quot;&gt;Docker Vs Habitat&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34904574-7af45216-f86e-11e7-87a0-1f2abf6aea3b.png&quot; width=&quot;auto&quot; height=&quot;auto&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;chef-automate&quot;&gt;Chef Automate&lt;/h2&gt;
+
+&lt;h3 id=&quot;introduction-to-chef-automate&quot;&gt;Introduction to Chef Automate&lt;/h3&gt;
+
+&lt;p&gt;Chef automate is a CI/CD Based solution provided by &lt;a href=&quot;http://chef.io&quot;&gt;Chef&lt;/a&gt; to complete your end to end delivery requirements. It provides you with necessary tools to make your life easier and simple. It has by default integration for features &amp;amp; tools like &lt;a href=&quot;https://www.inspec.io/&quot;&gt;Inspec&lt;/a&gt; for Compliance, LDAP/SAML Support, &lt;a href=&quot;http://www.slack.com&quot;&gt;Slack&lt;/a&gt; Integration for Notifications etc.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34904580-9db6c5ae-f86e-11e7-974e-87ead19b8dac.png&quot; alt=&quot;chef-automate-habitat&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;trying-out-on-local-system&quot;&gt;Trying Out on Local System:&lt;/h2&gt;
+
+&lt;p&gt;Chef Automate can be easily tried on your local system by downloading Chef Automate from &lt;a href=&quot;https://downloads.chef.io/automate&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For the cli, Download the package from &lt;a href=&quot;https://downloads.chef.io/automate&quot;&gt;here&lt;/a&gt; .&lt;/p&gt;
+
+&lt;p&gt;In order to check, try running:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ramit@ramit-Inspiron-3542:~$ automate-ctl
+I don't know that command.
+omnibus-ctl: command (subcommand)
+create-enterprise
+  Create a new enterprise
+create-user
+  Create a new user
+create-users
+  Create new users from a tsv file
+delete-enterprise
+  Deletes an existing enterprise
+delete-project
+  Deletes an existing project
+delete-runner
+.....
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Check if everything is good or not:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ramit@ramit-Inspiron-3542:~$ sudo automate-ctl preflight-check
+[sudo] password for ramit: 
+
+Running Preflight Checks:
+  Checking for required resources...
+    ✔ [passed]  CPU at least 4 cores
+    ✖ [failed]  memory at least 16GB
+  Checking for required directories...
+    ✔ [passed]  /var
+    ✔ [passed]  /var has at least 80GB free
+    ✔ [passed]  /etc
+  Checking for required umask...
+    ✔ [passed]  0022
+....
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For Authenticating License:&lt;/p&gt;
+
+&lt;p&gt;(Grab your free License from &lt;a href=&quot;https://learn.chef.io/modules/try-chef-automate#/&quot;&gt;here&lt;/a&gt;)&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Setup License &amp;amp; organization
+$ automate-ctl setup --license /$PATH/automate.license --server-url https://localhost/organizations/$org_name --enterprise default --configure --no-build-node
+
+$ automate-ctl reconfigure
+
+//Create a default user and password
+$ automate-ctl create-user default $user --password admin --roles &quot;admin&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Try opening &lt;strong&gt;http://127.0.0.1:80&lt;/strong&gt; to interact with the Web UI.&lt;/p&gt;
+
+&lt;h3 id=&quot;chef-automate-setup-on-aws-ec2&quot;&gt;Chef Automate Setup on AWS EC2&lt;/h3&gt;
+
+&lt;h4 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h4&gt;
+
+&lt;p&gt;In order for the Chef Automate Setup to work, we will use a minimal setup in order to proceed. Here are the configuration details:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Category&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Inbound Security Ports Access&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Operating System &amp;amp; Instance Size&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Chef Server&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;22 (SSH), 80 (HTTP), 443 (HTTPS), 10000-10003 (push jobs)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Ubuntu 16.04(ami-21766642) &amp;amp; t2.micro&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Chef Automate Server&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;22 (SSH), 80 (HTTP), 443 (HTTPS), 8989 (Git)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Ubuntu 16.04(ami-21766642) &amp;amp; t2.large&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Do make sure to install the &lt;strong&gt;License file&lt;/strong&gt; required for running Chef Automate from &lt;a href=&quot;https://learn.chef.io/modules/try-chef-automate#/&quot;&gt;here&lt;/a&gt;.Its a 30 day free trial. As per its current &lt;a href=&quot;https://www.chef.io/pricing/&quot;&gt;pricing&lt;/a&gt; page the fee for Chef Automate on AWS is $0.0155 node/hour.&lt;/p&gt;
+
+&lt;p&gt;Also, we will be using fully-qualified domain names (FQDNs) as recommended by Chef.&lt;/p&gt;
+
+&lt;p&gt;Please make sure to &lt;strong&gt;note the FQDN for both your Chef server and Chef Automate server&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$CHEF_SERVER_FQDN=&quot;Public DNS NAME of Chef Server EC2 Instance&quot;
+$CHEF_AUTOMATE_FQDN=&quot;Public DNS NAME of Chef Automate EC2 Instance&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h4 id=&quot;setup&quot;&gt;Setup&lt;/h4&gt;
+
+&lt;p&gt;Let’s get started:&lt;/p&gt;
+
+&lt;p&gt;Using the aws console,we can start 2 EC2 instances with ( t2.large ) instance type. Make sure to configre your security groups like shown below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34915271-430eb8f6-f949-11e7-8674-d6bf5323480f.png&quot; alt=&quot;chef-server-rules&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Make sure to add Port 8989 for Git with Chef-Automate Server.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;After bringing up the &lt;strong&gt;chef-server&lt;/strong&gt; machine, please log into the machine and use git to clone the following repo:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ git clone https://github.com/ramitsurana/chef-automate-habitat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Run scripts/install-chef-server.sh :&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Make sure to set the variable with proper DNS Name
+$ CHEF_AUTOMATE_FQDN=&quot;Public DNS NAME of Chef Automate EC2 Instance&quot;
+
+// Add permissions to execute
+$ chmod +x $HOME/chef-automate-habitat/scripts/install-chef-server.sh
+
+// Run the script to install chef
+$ sudo $HOME/chef-automate-habitat/scripts/install-chef-server.sh $CHEF_AUTOMATE_FQDN ramit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Successfully Copy Files to &lt;strong&gt;Chef Server&lt;/strong&gt; from &lt;strong&gt;local machine&lt;/strong&gt; using scp:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// License File
+$ scp -i ~/.ssh/private_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ~/Downloads/automate.license ubuntu@ec2-52-91-162-254.compute-1.amazonaws.com:/tmp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Successfully Copy Files to &lt;strong&gt;Chef Automate&lt;/strong&gt; from &lt;strong&gt;Chef Server&lt;/strong&gt; using scp:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//Copy New PEM File from Chef Server to your local machine
+$ scp -i &amp;lt;YOUR-EC2&amp;gt;.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ubuntu@&amp;lt;YOUR-CHEF-SERVER-DNS&amp;gt;:/drop/delivery.pem /tmp
+
+//Upload the delivery.pem file to Chef Automate instance 
+$ scp -i &amp;lt;YOUR-CHEF-AUTOMATE&amp;gt;.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null /tmp/delivery.pem ubuntu@&amp;lt;YOUR-CHEF-AUTOMATE-DNS&amp;gt;:/home/ubuntu
+
+//Upload the your license file to Chef Automate instance 
+$ scp -i &amp;lt;YOUR-CHEF-AUTOMATE&amp;gt;.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null /&amp;lt;PATH-TO-AUTOMATE-LICENSE&amp;gt;.license ubuntu@&amp;lt;YOUR-CHEF-AUTOMATE-DNS&amp;gt;:/home/ubuntu
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Now your Chef Server is fully up and ready. We now move onto Chef-Automate Sever, after getting into it using ssh. Follow these below steps:&lt;/p&gt;
+
+&lt;p&gt;Use git to clone the following repo:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ git clone https://github.com/ramitsurana/chef-automate-habitat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Make sure to set the variable with proper DNS Name
+$CHEF_SERVER_FQDN=&quot;Public DNS NAME of Chef Server EC2 Instance&quot;
+
+// Add permissions to execute
+$ chmod +x $HOME/chef-automate-habitat/scripts/install-chef-automate.sh
+
+// Run the script to install chef
+$ sudo $HOME/chef-automate-habitat/scripts/install-chef-automate.sh $CHEF_SERVER_FQDN ramit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After completing the above steps, you can proceed to open the DNS/IP for Chef Automate Server&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34936721-7687a976-fa08-11e7-9337-ec84521efdad.png&quot; alt=&quot;chef-login&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Hoorah ! You have successfully configures chef automate and now you are ready to login.&lt;/p&gt;
+
+&lt;p&gt;Let’s start exploring some new features of the Chef Automate Dashboard:&lt;/p&gt;
+
+&lt;p&gt;With your &lt;strong&gt;user name&lt;/strong&gt; and password &lt;strong&gt;admin&lt;/strong&gt;, try to login. You will observe the following screen:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34937222-1341306a-fa0a-11e7-9801-3c2cf4206785.png&quot; alt=&quot;chef-login1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For shutting down chef automate:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo automate-ctl stop
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34936511-b2b2e574-fa07-11e7-9497-502e7687af7b.png&quot; alt=&quot;chef-automate-internals&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;chef-automate-internals&quot;&gt;Chef Automate Internals&lt;/h3&gt;
+
+&lt;p&gt;Some of the chef automate internals that I observed while exploring this tool are as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8342133/34941142-801a87be-fa18-11e7-9bd6-a399548c082c.png&quot; alt=&quot;chef-automate-arch&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/products/elasticsearch&quot;&gt;Elasticsearch&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/products/logstash&quot;&gt;Logstash&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.nginx.com/&quot;&gt;Nginx&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.postgresql.org/&quot;&gt;Postgresql&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.rabbitmq.com/&quot;&gt;RabbitMq&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We will be discussing more on this in the next article :)&lt;/p&gt;
+
+&lt;h2 id=&quot;tips--tricks-on-cicd&quot;&gt;Tips &amp;amp; Tricks on CI/CD&lt;/h2&gt;
+
+&lt;p&gt;As a bonus, sharing some tips on building &amp;amp; managing CI/CD in a better way:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Automate Liveness Agent&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can also use chef automate &lt;a href=&quot;https://github.com/chef/automate-liveness-agent&quot;&gt;liveness agent&lt;/a&gt; for sending keepalive messages to Chef Automate, which prevents nodes that are up but not frequently running Chef Client from appearing as “missing” in the Automate UI. At the time of writing, it is currently in development.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Using Syntax Checker&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;One of the most primary starting point in CI/CD is to write a file using which we describe how our jobs are handled in the pipeline. For various tools, there are many syntax validators. I found them really useful. Some of there tools are:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://job-dsl.herokuapp.com/&quot;&gt;Jenkins&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gitlab.com/ci/lint&quot;&gt;Gitlab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lint.travis-ci.org/&quot;&gt;Travis&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Use CI Web Pages for better output in Web Development Related Projects&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can use this script in Gitlab (.gitlab-ci.yml) to obtain the output at 
+&lt;em&gt;http://&amp;lt;-USERNAME-OF-GITLAB-&amp;gt;.gitlab.io/&amp;lt;-PROJECT-NAME-&amp;gt;/&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pages:
+  stage: deploy
+  script:
+  - mkdir .public
+  - cp -r * .public
+  - mv .public public
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For GitHub use the below script in (_config.yml) to obtain the output at 
+&lt;em&gt;http://&amp;lt;-USERNAME-OF-GITHUB-&amp;gt;.github.io/&amp;lt;-PROJECT-NAME-&amp;gt;/&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;theme: jekyll-theme-cayman
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Avoid using Polling using GitHub Hooks&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As correctly said by &lt;a href=&quot;http://kohsuke.org/2011/12/01/polling-must-die-triggering-jenkins-builds-from-a-git-hook/&quot;&gt;Koshuke&lt;/a&gt;, it is important that we adopt new methods to trigger the pipelines.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Use proper checkout strategy&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;One of the mistakes that one can do while checking out multiple repositories in a pipeline is the fact that unintended commit on other repo might be triggering the pipeline. The best command to checkout the repo is this :&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;checkout(
+poll: false,
+scm: [
+  $class: 'GitSCM', branches: [[name: '*/master']],
+  userRemoteConfigs: [[
+    url: MY_URL.git,
+    credentialsId: CREDENTIALS_ID]],
+  extensions: [
+    [$class: 'DisableRemotePoll'],
+    [$class: 'PathRestriction', excludedRegions: '', includedRegions: '*']]
+])
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Try Using Python for writing automation scripts&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Python is a super amazing and fun language to work with. One of the cool reasons why I recommend it is because of the awesome libraries it has support to like &lt;a href=&quot;https://pypi.python.org/pypi/PyDictionary/1.3.4&quot;&gt;dictionary&lt;/a&gt;, &lt;a href=&quot;https://docs.python.org/2/library/json.html&quot;&gt;json&lt;/a&gt;, &lt;a href=&quot;https://docs.python.org/2/library/csv.html&quot;&gt;csv&lt;/a&gt; etc.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Exploring Chef Automate &amp;amp; Habitat has been a heck of a fun task for me. It enabled me to learn more about the upcoming new technologies and its usage in the DevOps world. In the end, I Hope you enjoyed this post,do share this post &amp;amp; tell me your fun experiences with chef in the below comments section.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>ramitsurana</name>
+        
+        
+      </author>
+
+      
+        <category term="[&quot;Jenkins&quot;, &quot;Continous Delivery&quot;, &quot;Continous Integration&quot;, &quot;Syntax&quot;, &quot;Chef&quot;, &quot;Habitat&quot;, &quot;Automate&quot;]" />
+      
+
+      
+        <category term="Chef" />
+      
+        <category term="CI/CD" />
+      
+        <category term="Jenkins" />
+      
+        <category term="Habitat" />
+      
+        <category term="Automate" />
+      
+
+      
+        <summary type="html">Using Chef Tools to automate your CI/CD Journey</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

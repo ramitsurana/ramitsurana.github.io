@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="/tag/kubernetes-jenkins-docker-fabric8-continous-integration-delivery/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="/" rel="alternate" type="text/html" />
+  <updated>2021-05-21T08:27:10+00:00</updated>
+  <id>/tag/kubernetes-jenkins-docker-fabric8-continous-integration-delivery/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">Ramit Surana | </title>
+  
+
+  
+    <subtitle>Ramit Surana Personal Blog</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Achieving CI/CD with Kubernetes</title>
+      <link href="/achieving-ci-cd-with-kubernetes" rel="alternate" type="text/html" title="Achieving CI/CD with Kubernetes" />
+      <published>2016-08-01T00:00:00+00:00</published>
+      <updated>2016-08-01T00:00:00+00:00</updated>
+      <id>/achieving-ci-cd-with-kubernetes</id>
+      <content type="html" xml:base="/achieving-ci-cd-with-kubernetes">&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#methodology&quot;&gt;Methodology&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#overview-of-architecture&quot;&gt;Overview of Architecture&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#kubernetes-jenkins-plugin&quot;&gt;Kubernetes-Jenkins Plugin&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#one-problem&quot;&gt;One Problem&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#a-word-about-data-containers&quot;&gt;A word about Data Containers&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#configuring-settings-for-kubernetes-over-jenkins&quot;&gt;Configuring settings for Kubernetes over Jenkins&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#fabric8&quot;&gt;Fabric8&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#achieving-ci-and-cd&quot;&gt;Achieving CI and CD&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Hola amigos !!(&lt;em&gt;In English - Hello Friends !!&lt;/em&gt;) Hope you are having a jolly good day ! In terms of &lt;a href=&quot;http://www.martinfowler.com&quot;&gt;Martin Fowler&lt;/a&gt;,Continous Integration can be defined as
+“Continuous Integration is a software development practice where members of a team integrate their work frequently, usually each person integrates at least daily - leading to multiple integrations per day. Each integration is verified by an automated build (including test) to detect integration errors as quickly as possible. Many teams find that this approach leads to significantly reduced integration problems and allows a team to develop cohesive software more rapidly.”&lt;/p&gt;
+
+&lt;p&gt;In this rather interesting piece of article we are going to discuss and explore two amazing and rather interesting pieces technology.One i.e. Jenkins,a popular Continous Integration/Deployment tool and Second i.e. Kubernetes.As an added bonus we are also going to discover fabric8 an awesome tool for microservices platform.So let’s get started,&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;WARNING&lt;/strong&gt; Your machine may hang several times while performing the below steps.Choose a pc with high configuration.&lt;/p&gt;
+
+&lt;h2 id=&quot;methodology&quot;&gt;Methodology&lt;/h2&gt;
+
+&lt;p&gt;There are many methodology using which we can achieve CI/CD for the on our machine.Currently,in this article we are focussed on&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#kubernetes-jenkins-plugin&quot;&gt;Kubernetes-Jenkins Plugin&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#fabric8&quot;&gt;Fabric8&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;overview-of-architecture&quot;&gt;Overview of Architecture&lt;/h2&gt;
+
+&lt;p&gt;Before Starting our work,first let’s take a moment and analyze the workflow required to start using &lt;a href=&quot;http://kubernetes.io&quot;&gt;kubernetes&lt;/a&gt; containers with &lt;a href=&quot;https://jenkins.io&quot;&gt;jenkins&lt;/a&gt;.&lt;a href=&quot;http://kubernetes.io&quot;&gt;Kubernetes&lt;/a&gt; is an amazing orchestration engine for containers developed an amazing open source community.The fact that &lt;a href=&quot;http://kubernetes.io&quot;&gt;kubernetes&lt;/a&gt; was started by Google,gives Kubernetes an amazing advantage to use multiple open source container projects.By default,&lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; is the one that is supported and used most with &lt;a href=&quot;http://kubernetes.io&quot;&gt;kubernetes&lt;/a&gt;.So the workflow,with &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; containers looks like,&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/16848715/ba1473ea-4a14-11e6-99c2-cf8899c351a9.png&quot; alt=&quot;k8s-jenkins-docker&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Similarly while using &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; containers a.k.a rktnetes.Here’s the architecture:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/16848756/ef5afe52-4a14-11e6-8723-a251b0b5c675.png&quot; alt=&quot;k8s-jenkins-rkt&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Currently there is no plugin supported &lt;a href=&quot;http://coreos.com/rkt&quot;&gt;rkt&lt;/a&gt; containers.But I assume that the workflow will remain the same after its due implementation.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;kubernetes-jenkins-plugin&quot;&gt;Kubernetes-Jenkins Plugin&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Setting up Kubernetes on Host Machine&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Setting up &lt;a href=&quot;http://kubernetes.io&quot;&gt;kubernetes&lt;/a&gt; on your host machine is an easy task.In case you wish to try out on your local machine I would recommend you to try out &lt;a href=&quot;http://github.com/kubernetes/minikube&quot;&gt;minikube&lt;/a&gt;.In case you wish to the best of &lt;a href=&quot;http://kubernetes.io&quot;&gt;kubernetes&lt;/a&gt;,please refer to .Here is a quick follow up guide to get you started with setting up &lt;a href=&quot;http://github.com/kubernetes/minikube&quot;&gt;minikube&lt;/a&gt; on your local machine :&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/ramitsurana/21a137d1007980cadb98253b43a35ead.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;An amazing work in the direction of using &lt;a href=&quot;7&quot;&gt;jenkins&lt;/a&gt; and &lt;a href=&quot;11&quot;&gt;kubernetes&lt;/a&gt; has been done by &lt;a href=&quot;https://twitter.com/carlossg&quot;&gt;carlossg&lt;/a&gt;.He has built an awesome &lt;a href=&quot;http://kubernetes.io&quot;&gt;kubernetes&lt;/a&gt; plugin for &lt;a href=&quot;https://jenkins.io&quot;&gt;jenkins&lt;/a&gt;. Using this plugin you can easily start using &lt;a href=&quot;https://jenkins.io&quot;&gt;jenkins&lt;/a&gt; with &lt;a href=&quot;http://kubernetes.io&quot;&gt;kubernetes&lt;/a&gt; directly.Also to provide users with more easy options to configure.He has built a &lt;a href=&quot;https://jenkins.io&quot;&gt;jenkins&lt;/a&gt; image which by default contains the &lt;a href=&quot;http://kubernetes.io&quot;&gt;kubernetes&lt;/a&gt; plugin.This image is available at &lt;a href=&quot;https://hub.docker.com/r/csanchez/jenkins-kubernetes/&quot;&gt;docker hub&lt;/a&gt;.In the next steps we are going to fetch this image from docker hub and create a volume /var/jenkins_home for storing all your &lt;a href=&quot;https://jenkins.io&quot;&gt;jenkins&lt;/a&gt; data.&lt;/p&gt;
+
+&lt;h3 id=&quot;one-problem&quot;&gt;One Problem&lt;/h3&gt;
+
+&lt;p&gt;Although we are doing everything as we planned to do.We will still run into a problem,you will notice that whenever you are about to restart your &lt;a href=&quot;https://jenkins.io&quot;&gt;jenkins&lt;/a&gt; container after closing it down.All your data is lost.Whatever you did like creating jobs,installing plugins etc. will be lost.This is one of the common problems with containers.Let’s discuss it in a bit depth:&lt;/p&gt;
+
+&lt;h3 id=&quot;a-word-about-data-containers&quot;&gt;A word about Data Containers&lt;/h3&gt;
+
+&lt;p&gt;Data is a tricky concept when it comes to containers.The containers are not very good example of keeping data secure and available all the time.There have been many incidents in the past where the containers have been seen to leak data.There are many ways to deal with such a problem.One is to use docker volumes.Due to some reasons,I did not found it that useful.One of the ways I found to deal with persistent storage is to crete another container,called as Data Container, and use it as a source of storing data instead of depending only one image.Here’s a simple figure on how we plan to use the Data Container to ensure reliability of our data,&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/17329686/54dab2e2-58e1-11e6-9ea8-15717dba3a2e.png&quot; alt=&quot;containers&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here are the steps below to start using the jenkins kubernetes image,&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//Pulling down the jenkins-kubernetes image
+$ docker pull csanchez/jenkins-kubernetes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//Created a container for containing jenkins data with the image name csanchez/jenkins-kubernetes
+$ docker create --name jenkins-k8s csanchez/jenkins-kubernetes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The above command will create and save data in a container called jenkins-k8s,which will be used whenever we wish to further use the jenkins containers with a persistent volume.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//Running jenkins using another container containing data
+$ docker run --volumes-from jenkins-k8s -p 8080:8080 -p 50000:50000 -v /var/jenkins_home csanchez/jenkins-kubernetes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Open http://localhost:8080 in your browser,you should see the below screen:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/17297438/5a53522e-5823-11e6-8501-af049b8c2b5f.png&quot; alt=&quot;dash&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;configuring-settings-for-kubernetes-over-jenkins&quot;&gt;Configuring settings for Kubernetes over Jenkins&lt;/h3&gt;
+
+&lt;p&gt;Now the jenkins is pre-configured with &lt;a href=&quot;http://kubernetes.io&quot;&gt;kubernetes&lt;/a&gt; plugin.So let’s jump to the next step.Using the jenkins GUI go to
+&lt;strong&gt;Manage Jenkins&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Configure System&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Cloud&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Add a new Cloud *** –&amp;gt; **Kubernetes&lt;/strong&gt;
+The screen looks like below after you have followed the above steps:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/17297596/02cd4bc6-5824-11e6-8ecc-2c4193f91186.png&quot; alt=&quot;k8s-config&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now fill up your configuration settings according to the the pic below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/17330268/d12382b4-58e3-11e6-9139-49f6a58c6026.png&quot; alt=&quot;k8s-jenkins5&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In case you wish to use jenkins slave you can use the jnlp-slave image on docker hub.This is a simple image that is used to set up slave node template for you.You configure a slave pod by creating a template like in the figure below,&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/17330331/16f93c02-58e4-11e6-8a29-e3c47cfd64c4.png&quot; alt=&quot;k8s-jenkins6&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In order to use jenkins slave on the run.While creating a new job on jenkins,do this under configure settings of your job&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/17330427/6fed6ac2-58e4-11e6-948a-bc9805459862.png&quot; alt=&quot;k8s-jenkins7&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now just put the name of the label you put in &lt;strong&gt;kubernetes pod template&lt;/strong&gt; under the restrict section.Now save and apply the settings for your new job.When build this job you should see the slave node now running after you have build up the job.
+That’s all folks !! You are ready to go,you can now add more of your plugins as per your needs.&lt;/p&gt;
+
+&lt;h2 id=&quot;fabric8&quot;&gt;Fabric8&lt;/h2&gt;
+
+&lt;p&gt;It is an open source microservices platform based on &lt;a href=&quot;http://docker.com&quot;&gt;Docker&lt;/a&gt;, &lt;a href=&quot;http://kubernetes.io&quot;&gt;Kubernetes&lt;/a&gt; and &lt;a href=&quot;https://jenkins.io&quot;&gt;Jenkins&lt;/a&gt;.It is built by the Red Hat guys.The purpose of the project is to make it easy to create microservices, build, test and deploy them via Continuous Delivery pipelines then run and manage them with Continuous Improvement and ChatOps.&lt;/p&gt;
+
+&lt;p&gt;Fabric8 installs and configures the following things for you automatically&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jenkins.io&quot;&gt;Jenkins&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gogs.io/&quot;&gt;Gogs&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Fabric8 registry​&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://wiki.jenkins-ci.org/display/JENKINS/Nexus+Artifact+Uploader&quot;&gt;Nexus&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://sonarqube.org&quot;&gt;SonarQube&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here’s a brief pic of the architecture of &lt;a href=&quot;http://fabric8.io&quot;&gt;Fabric8&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/17319339/a37ae71e-58aa-11e6-9956-2562973a2bc4.png&quot; alt=&quot;screen shot 2014-11-06 at 10 07 10&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In order to get started,first you need to install the command line tool for &lt;a href=&quot;http://fabric8.io&quot;&gt;fabric8&lt;/a&gt; i.e. gofabric8.You can do that by downloading gofabric8 from https://github.com/fabric8io/gofabric8/releases.Unzipping it and use&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo cp /usr/local/bin/ gofabric8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;You can check its installation by running `$ gofabric8’ on your terminal.Now run the following commands below,&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ gofabric8 deploy -y
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Your terminal screen should look like this&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/17319676/e272ed34-58ac-11e6-9a9d-fdd80e4971af.png&quot; alt=&quot;fabric8&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Generating Secrets&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ gofabric8 secrets -y
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Your terminal screen should look like this&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/17319713/2eab1ab4-58ad-11e6-8fb2-aad173854063.png&quot; alt=&quot;fabric8-2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Check for the status of pods using kubectl&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ kubectl get pods
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/17319224/d4440dd6-58a9-11e6-871e-f5db9d52ca14.png&quot; alt=&quot;jenkins-pods&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It will take a while to get all the container images to pull down and getting started.So you can go out and drink coffee :)
+You can use kubectl describe pods to check if something fails.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/17319386/def51db4-58aa-11e6-9358-659510c082d4.png&quot; alt=&quot;fabric8-4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can checkout the status of your pods via a opening the &lt;a href=&quot;http://kubernetes.io&quot;&gt;kubernetes&lt;/a&gt; dashboard in a browser:&lt;/p&gt;
+
+&lt;p&gt;http://192.168.99.100:30000&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/17319479/882ba7f4-58ab-11e6-822c-d8c5da934ae2.png&quot; alt=&quot;fabric8-5&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Similarly you can open the &lt;a href=&quot;http://fabric8.io&quot;&gt;fabric8&lt;/a&gt; hawtio browser interface&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/17319603/62bcd1a4-58ac-11e6-90b4-4955f54d3274.png&quot; alt=&quot;fabric8-console&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;From my analysis here’s what happened when you ran the following commands.Basically,in a short version &lt;a href=&quot;http://fabric8.io&quot;&gt;fabric8&lt;/a&gt; created 6 pods containing 6 different containers which can be controlled by the &lt;a href=&quot;http://fabric8.io&quot;&gt;fabric8&lt;/a&gt; console or the &lt;a href=&quot;http://kubernetes.io&quot;&gt;kubernetes&lt;/a&gt; dashboard.Now you can easily integrate various different apps by using the hawtio dashboard.Here’s a similar depiction of the same as shown below,&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/8342133/17319646/ac7e9f2a-58ac-11e6-9b0c-31bb993c950c.png&quot; alt=&quot;fabric8-layout&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;achieving-ci-and-cd&quot;&gt;Achieving CI and CD&lt;/h2&gt;
+
+&lt;p&gt;Easier said than done,building &lt;a href=&quot;https://jenkins.io&quot;&gt;jenkins&lt;/a&gt; from source and integrating &lt;a href=&quot;http://kubernetes.io&quot;&gt;kubernetes&lt;/a&gt; is one part of the story.But achieving Continous Delivery with your setup is another very different and complex part of the story.Here are some of my tips on using certain plugins that could help you in achieving Continous Delivery with &lt;a href=&quot;https://jenkins.io&quot;&gt;jenkins&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jenkins.io/solutions/pipeline/&quot;&gt;Pipeline Plugin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is a core plugin built by the &lt;a href=&quot;https://jenkins.io&quot;&gt;jenkins&lt;/a&gt; community.This plugin ensures that you can easily integrate any orchestration engine with your enviorment with very less complexity.Currently this was started as different communities had started building different plugins for various orchestration engines.This created a mess of various plugins.Using this plugin users now can implement a project’s entire build/test/deploy pipeline in a Jenkinsfile and store that alongside their code, treating their pipeline as another piece of code to be checked into source control&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://wiki.jenkins-ci.org/display/JENKINS/GitHub+Plugin&quot;&gt;Github Plugin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These days most companies are using github as SCM tool.In this case I would recommend you to use this plugin.This plugin helps you to push the code from github and analyze,test it over &lt;a href=&quot;https://jenkins.io&quot;&gt;Jenkins&lt;/a&gt;.For authentication purposes I would recommend you to look
+&lt;a href=&quot;https://wiki.jenkins-ci.org/display/JENKINS/GitHub+OAuth+Plugin&quot;&gt;Github Oauth Plugin&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://wiki.jenkins-ci.org/display/JENKINS/Docker+Plugin&quot;&gt;Docker Plugin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For &lt;a href=&quot;http://docker.com&quot;&gt;Docker&lt;/a&gt; guys this is one of the most suitable plugin that helps you do almost everything with &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt;.This plugin also helps you to use &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; containers as slaves. There are several other &lt;a href=&quot;http://docker.com&quot;&gt;docker&lt;/a&gt; plugins that according to time and your usage you can switch over with.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://wiki.jenkins-ci.org/display/JENKINS/AWS+CodePipeline+Plugin&quot;&gt;AWS Pipeline&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The AWS guys have introduced an awesome service called as pipeline.This particular service helps you to attain continous delivery with your aws setup.Currently this plugin is under heavy development and might not be suitable for production enviorments.Also checkout &lt;a href=&quot;https://wiki.jenkins-ci.org/display/JENKINS/CodeCommit+URL+Helper&quot;&gt;AWS CodeCommit&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://wiki.jenkins-ci.org/display/JENKINS/Openstack+Cloud+Plugin&quot;&gt;OpenStack&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For the openstack users,this plugin is suitable to configure your openstack settings with your openstack enviorment.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://wiki.jenkins-ci.org/display/JENKINS/Google+Deployment+Manager+Plugin&quot;&gt;Google Cloud Platform&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The deployment manager is service started by the Google Cloud platform.Using Deployment Manager,you can create flexible and declarative templates that can deploy a variety of Cloud Platform services, such as Google Cloud Storage, Google Compute Engine, Google Cloud SQL, and leave it to Deployment Manager to manage the Cloud Platform resources defined in your templates as deployments.
+This is a very new plugin.But I think it is worth a try if you wish to automate and sort things out with Google Cloud Platform.&lt;/p&gt;
+
+&lt;p&gt;In the end,I hope you enjoyed reading this article.Please let me know your valuable thoughts in the comments section below.Regrarding the blog post above I have posted my slides below.Hope you had a fun time experimenting and have a lovely day :)&lt;/p&gt;
+
+&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/D66umPt8TAvYdD&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt;
+&lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/ramitsurana/achieving-cicd-with-kubernetes&quot; title=&quot;Achieving CI/CD with Kubernetes&quot; target=&quot;_blank&quot;&gt;Achieving CI/CD with Kubernetes&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;//www.slideshare.net/ramitsurana&quot; target=&quot;_blank&quot;&gt;Ramit Surana&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>ramitsurana</name>
+        
+        
+      </author>
+
+      
+        <category term="[&quot;containers&quot;, &quot;jenkins&quot;, &quot;docker&quot;]" />
+      
+
+      
+        <category term="kubernetes jenkins docker fabric8 Continous Integration Delivery" />
+      
+
+      
+        <summary type="html">Building CI/CD pipeline with kubernetes</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>
